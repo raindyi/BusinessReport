@@ -140,6 +140,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\BusinessReport.pdb" />
+    <Content Include="Data\Database.sql" />
     <Content Include="Res\1Main.ico" />
   </ItemGroup>
   <ItemGroup>

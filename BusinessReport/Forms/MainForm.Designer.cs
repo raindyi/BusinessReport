@@ -40,6 +40,7 @@
             this.labelWelcome = new System.Windows.Forms.Label();
             this.linkLabelUser = new System.Windows.Forms.LinkLabel();
             this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.tsMenuItemDataDic = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripOprMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -84,6 +85,7 @@
             this.tsMenuItemSystem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsMenuItemUserManagement,
             this.tsMenuItemStore,
+            this.tsMenuItemDataDic,
             this.tsMenuItemAbout});
             this.tsMenuItemSystem.Name = "tsMenuItemSystem";
             this.tsMenuItemSystem.Size = new System.Drawing.Size(43, 20);
@@ -92,21 +94,21 @@
             // tsMenuItemUserManagement
             // 
             this.tsMenuItemUserManagement.Name = "tsMenuItemUserManagement";
-            this.tsMenuItemUserManagement.Size = new System.Drawing.Size(122, 22);
+            this.tsMenuItemUserManagement.Size = new System.Drawing.Size(152, 22);
             this.tsMenuItemUserManagement.Text = "用户管理";
             this.tsMenuItemUserManagement.Click += new System.EventHandler(this.tsMenuItemUserManagement_Click);
             // 
             // tsMenuItemStore
             // 
             this.tsMenuItemStore.Name = "tsMenuItemStore";
-            this.tsMenuItemStore.Size = new System.Drawing.Size(122, 22);
+            this.tsMenuItemStore.Size = new System.Drawing.Size(152, 22);
             this.tsMenuItemStore.Text = "门店管理";
             this.tsMenuItemStore.Click += new System.EventHandler(this.tsMenuItemStore_Click);
             // 
             // tsMenuItemAbout
             // 
             this.tsMenuItemAbout.Name = "tsMenuItemAbout";
-            this.tsMenuItemAbout.Size = new System.Drawing.Size(122, 22);
+            this.tsMenuItemAbout.Size = new System.Drawing.Size(152, 22);
             this.tsMenuItemAbout.Text = "关于";
             this.tsMenuItemAbout.Click += new System.EventHandler(this.tsMenuItemAbout_Click);
             // 
@@ -164,6 +166,13 @@
             this.tabControlMain.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControlMain_DrawItem);
             this.tabControlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControlMain_MouseDown);
             // 
+            // tsMenuItemDataDic
+            // 
+            this.tsMenuItemDataDic.Name = "tsMenuItemDataDic";
+            this.tsMenuItemDataDic.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemDataDic.Text = "数据字典";
+            this.tsMenuItemDataDic.Click += new System.EventHandler(this.tsMenuItemDataDic_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,6 +211,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemUserManagement;
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemStore;
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemAbout;
+        private System.Windows.Forms.ToolStripMenuItem tsMenuItemDataDic;
     }
 }
 

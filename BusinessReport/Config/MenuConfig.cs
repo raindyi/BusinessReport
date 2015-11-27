@@ -11,23 +11,34 @@ namespace PV.BusinessReport.UI.Config
         public static Dictionary<String, MenuConfigModel> MenuConfigSettings = new Dictionary<string, MenuConfigModel>()
         {
             {
-                "ABOUT", new MenuConfigModel()
+                "ABOUT",
+                new MenuConfigModel()
                 {
                     DialogModel = true,
                     OperateFormFullName = "PV.BusinessReport.UI.Forms.AboutForm"
                 }
             },
             {
-                "USERLIST", new MenuConfigModel()
+                "USERLIST",
+                new MenuConfigModel()
                 {
                     OperateFormFullName = "PV.BusinessReport.UI.Forms.UserListForm"
                 }
             },
             {
-                "TRANSFLOWIMPORT",new MenuConfigModel()
+                "TRANSFLOWIMPORT",
+                new MenuConfigModel()
                 {
                     DialogModel = true,
                     OperateFormFullName = "PV.BusinessReport.UI.Forms.TransFlowImportForm"
+                }
+            },
+            {
+                "DATADICLIST",
+                new MenuConfigModel()
+                {
+                    DialogModel = false,
+                    OperateFormFullName = "PV.BusinessReport.UI.Forms.DataDicListForm"
                 }
             }
         };

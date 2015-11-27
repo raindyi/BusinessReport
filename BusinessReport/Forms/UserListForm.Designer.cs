@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.comboBoxQStore = new System.Windows.Forms.ComboBox();
             this.buttonSearch = new System.Windows.Forms.Button();
+            this.labelQStore = new System.Windows.Forms.Label();
             this.textBoxQPhone = new System.Windows.Forms.TextBox();
             this.labelQPhone = new System.Windows.Forms.Label();
             this.textBoxQName = new System.Windows.Forms.TextBox();
             this.labelQName = new System.Windows.Forms.Label();
             this.splitContainerBottom = new System.Windows.Forms.SplitContainer();
+            this.comboBoxStore = new System.Windows.Forms.ComboBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
+            this.labelStore = new System.Windows.Forms.Label();
             this.labelPhone = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxLoginName = new System.Windows.Forms.TextBox();
             this.labelLoginName = new System.Windows.Forms.Label();
             this.dataGridViewList = new System.Windows.Forms.DataGridView();
-            this.labelQStore = new System.Windows.Forms.Label();
-            this.comboBoxQStore = new System.Windows.Forms.ComboBox();
-            this.comboBoxStore = new System.Windows.Forms.ComboBox();
-            this.labelStore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -83,6 +83,15 @@
             this.splitContainerMain.SplitterDistance = 30;
             this.splitContainerMain.TabIndex = 0;
             // 
+            // comboBoxQStore
+            // 
+            this.comboBoxQStore.FormattingEnabled = true;
+            this.comboBoxQStore.Location = new System.Drawing.Point(420, 5);
+            this.comboBoxQStore.Name = "comboBoxQStore";
+            this.comboBoxQStore.Size = new System.Drawing.Size(135, 21);
+            this.comboBoxQStore.TabIndex = 7;
+            this.comboBoxQStore.SelectedIndexChanged += new System.EventHandler(this.comboBoxQStore_SelectedIndexChanged);
+            // 
             // buttonSearch
             // 
             this.buttonSearch.Location = new System.Drawing.Point(562, 4);
@@ -92,6 +101,15 @@
             this.buttonSearch.Text = "查找";
             this.buttonSearch.UseVisualStyleBackColor = true;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // labelQStore
+            // 
+            this.labelQStore.AutoSize = true;
+            this.labelQStore.Location = new System.Drawing.Point(383, 9);
+            this.labelQStore.Name = "labelQStore";
+            this.labelQStore.Size = new System.Drawing.Size(31, 13);
+            this.labelQStore.TabIndex = 6;
+            this.labelQStore.Text = "门店";
             // 
             // textBoxQPhone
             // 
@@ -153,12 +171,30 @@
             this.splitContainerBottom.SplitterDistance = 30;
             this.splitContainerBottom.TabIndex = 0;
             // 
+            // comboBoxStore
+            // 
+            this.comboBoxStore.FormattingEnabled = true;
+            this.comboBoxStore.Location = new System.Drawing.Point(598, 5);
+            this.comboBoxStore.Name = "comboBoxStore";
+            this.comboBoxStore.Size = new System.Drawing.Size(135, 21);
+            this.comboBoxStore.TabIndex = 9;
+            this.comboBoxStore.SelectedIndexChanged += new System.EventHandler(this.comboBoxStore_SelectedIndexChanged);
+            // 
             // textBoxPhone
             // 
             this.textBoxPhone.Location = new System.Drawing.Point(420, 6);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(135, 20);
             this.textBoxPhone.TabIndex = 5;
+            // 
+            // labelStore
+            // 
+            this.labelStore.AutoSize = true;
+            this.labelStore.Location = new System.Drawing.Point(561, 9);
+            this.labelStore.Name = "labelStore";
+            this.labelStore.Size = new System.Drawing.Size(31, 13);
+            this.labelStore.TabIndex = 8;
+            this.labelStore.Text = "门店";
             // 
             // labelPhone
             // 
@@ -211,42 +247,6 @@
             this.dataGridViewList.TabIndex = 0;
             this.dataGridViewList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewList_MouseClick);
             // 
-            // labelQStore
-            // 
-            this.labelQStore.AutoSize = true;
-            this.labelQStore.Location = new System.Drawing.Point(383, 9);
-            this.labelQStore.Name = "labelQStore";
-            this.labelQStore.Size = new System.Drawing.Size(31, 13);
-            this.labelQStore.TabIndex = 6;
-            this.labelQStore.Text = "门店";
-            // 
-            // comboBoxQStore
-            // 
-            this.comboBoxQStore.FormattingEnabled = true;
-            this.comboBoxQStore.Location = new System.Drawing.Point(420, 5);
-            this.comboBoxQStore.Name = "comboBoxQStore";
-            this.comboBoxQStore.Size = new System.Drawing.Size(135, 21);
-            this.comboBoxQStore.TabIndex = 7;
-            this.comboBoxQStore.SelectedIndexChanged += new System.EventHandler(this.comboBoxQStore_SelectedIndexChanged);
-            // 
-            // comboBoxStore
-            // 
-            this.comboBoxStore.FormattingEnabled = true;
-            this.comboBoxStore.Location = new System.Drawing.Point(598, 5);
-            this.comboBoxStore.Name = "comboBoxStore";
-            this.comboBoxStore.Size = new System.Drawing.Size(135, 21);
-            this.comboBoxStore.TabIndex = 9;
-            this.comboBoxStore.SelectedIndexChanged += new System.EventHandler(this.comboBoxStore_SelectedIndexChanged);
-            // 
-            // labelStore
-            // 
-            this.labelStore.AutoSize = true;
-            this.labelStore.Location = new System.Drawing.Point(561, 9);
-            this.labelStore.Name = "labelStore";
-            this.labelStore.Size = new System.Drawing.Size(31, 13);
-            this.labelStore.TabIndex = 8;
-            this.labelStore.Text = "门店";
-            // 
             // UserListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,7 +255,7 @@
             this.Controls.Add(this.splitContainerMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UserListForm";
-            this.Text = "UserListForm";
+            this.Text = "用户管理";
             this.Load += new System.EventHandler(this.UserListForm_Load);
             this.splitContainerMain.Panel1.ResumeLayout(false);
             this.splitContainerMain.Panel1.PerformLayout();

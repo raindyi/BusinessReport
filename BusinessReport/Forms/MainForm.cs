@@ -67,6 +67,7 @@ namespace PV.BusinessReport.UI.Forms
                             tabControlMain.TabPages.Add(page);
                             pageDictionary.Add(name, tabControlMain.TabCount - 1);
                             page.Show();
+                            tabControlMain.SelectTab(page);
                             frm.Show();
                         }
                     }
@@ -200,6 +201,10 @@ namespace PV.BusinessReport.UI.Forms
             AddForm("ABOUT");
         }
 
+        private void tsMenuItemDataDic_Click(object sender, EventArgs e)
+        {
+            AddForm("DATADICLIST"); 
+        }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show("是否退出系统?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
@@ -219,5 +224,7 @@ namespace PV.BusinessReport.UI.Forms
         {
             Init();
         }
+
+        
     }
 }

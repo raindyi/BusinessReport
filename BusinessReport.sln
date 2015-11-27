@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PV.BusinessReport.DAL", "PV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PV.BusinessReport.Log", "PV.BusinessReport.Log\PV.BusinessReport.Log.csproj", "{7D1C266E-6E96-42FE-A68C-B714478C7FD1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PV.BusinessReport.PL", "PV.BusinessReport.PL\PV.BusinessReport.PL.csproj", "{5C77D1D3-F5A1-4093-867E-CEC722B8CE05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7D1C266E-6E96-42FE-A68C-B714478C7FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D1C266E-6E96-42FE-A68C-B714478C7FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D1C266E-6E96-42FE-A68C-B714478C7FD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C77D1D3-F5A1-4093-867E-CEC722B8CE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C77D1D3-F5A1-4093-867E-CEC722B8CE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C77D1D3-F5A1-4093-867E-CEC722B8CE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C77D1D3-F5A1-4093-867E-CEC722B8CE05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

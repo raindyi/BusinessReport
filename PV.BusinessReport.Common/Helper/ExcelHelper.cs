@@ -17,122 +17,244 @@ namespace PV.BusinessReport.Common.Helper
     /// </summary>
     public class ExcelHelper
     {
-        #region Veriable
-
-        #endregion
-
-        #region Function
-
-        #region Public
-        public static DataSet ExcelToData(String filePath)
+        private OleDbConnection conn;
+        private string connString;
+        private string fileName;
+        private string filePath;
+        private FileType fileType = FileType.noset;
+        private DataTable readDataTable;
+        private const int EXCEL03_MaxRow = 65535;
+        public ExcelHelper()
         {
-            return Excel2Data(filePath, null);
+
         }
 
-        public static DataSet ExcelToDataUseFilter(String filePath, String filter)
+        public void DataToCsv(string filepath, DataTable dt)
         {
-            return Excel2Data(filePath, filter);
-        }
-
-        public static DataTable CsvToData(String filePath)
-        {
-            DataTable dt = new DataTable();
-            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs, System.Text.Encoding.Default);
-            try
+            var sb = new StringBuilder();
+            //Add Header Header
+            for (var x = 0; x < dt.Columns.Count; x++)
             {
-                String strLine = "";
-                String[] aryLine;
-                int columnCount = 0;
-                bool IsFirst = true;
-                while ((strLine = sr.ReadLine()) != null)
+                if (x != 0) sb.Append(",");
+                sb.Append(dt.Columns[x].ColumnName);
+            }
+            sb.AppendLine();
+            //Add Rows
+            foreach (DataRow row in dt.Rows)
+            {
+                for (var x = 0; x < dt.Columns.Count; x++)
                 {
-                    aryLine = strLine.Split(',');
-                    if (IsFirst == true)
+                    if (x != 0) sb.Append(",");
+                    sb.Append(row[dt.Columns[x]]);
+                }
+                sb.AppendLine();
+            }
+
+            string content = sb.ToString();
+
+            var sr = new StreamWriter(filepath, false, Encoding.GetEncoding("gb2312"));
+            sr.Write(content);
+            sr.Flush();
+            sr.Close();
+        }
+
+        public DataTable Read(string path)
+        {
+            if (System.IO.File.Exists(path))
+            {
+                SetFileInfo(path);
+                OleDbDataAdapter myCommand = null;
+                DataSet ds = null;
+
+                using (conn = new OleDbConnection(connString))
+                {
+                    conn.Open();
+
+                    DataTable schemaTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+
+                    string tableName = fileType == FileType.csv ? fileName : schemaTable.Rows[0][2].ToString().Trim();
+
+                    string strExcel = string.Empty;
+
+                    strExcel = "Select   *   From   [" + tableName + "]";
+                    myCommand = new OleDbDataAdapter(strExcel, conn);
+
+                    ds = new DataSet();
+
+                    myCommand.Fill(ds, tableName);
+
+                    readDataTable = ds.Tables[0];
+
+                }
+            }
+            return readDataTable;
+        }
+
+        private void SetFileInfo(string path)
+        {
+            filePath = path.Replace("/", "\\");
+
+            fileName = this.filePath.Remove(0, this.filePath.LastIndexOf("\\") + 1);
+            switch (fileName.Split('.')[fileName.Split('.').Length - 1])
+            {
+                case "xls":
+                    connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'";
+                    fileType = FileType.xls;
+                    break;
+                case "xlsx":
+                    connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties='Excel 12.0;HDR=Yes;IMEX=1;'";
+                    fileType = FileType.xlsx;
+                    break;
+                case "csv":
+                    connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath.Remove(filePath.LastIndexOf("\\") + 1) + ";Extended Properties='Text;FMT=Delimited;HDR=YES;'";
+                    fileType = FileType.csv;
+                    break;
+            }
+        }
+
+        private enum FileType
+        {
+            noset,
+            xls,
+            xlsx,
+            csv
+        }
+
+        public DataTable ReadFormCsv(string path)
+        {
+            if (System.IO.File.Exists(path))
+            {
+                DataTable dt = new DataTable();
+                DataSet ds = new DataSet();
+                StreamReader s = new StreamReader(path, System.Text.Encoding.Default);
+                //string ss = s.ReadLine();//skip the first line
+                string delimiter = ",";
+                string TableName = "csv";
+                string[] columns = s.ReadLine().Split(delimiter.ToCharArray());
+                ds.Tables.Add(TableName);
+                foreach (string col in columns)
+                {
+                    bool added = false;
+                    string next = "";
+                    int i = 0;
+                    while (!added)
                     {
-                        IsFirst = false;
-                        columnCount = aryLine.Length;
-                        for (int i = 0; i < columnCount; i++)
+                        string columnname = col + next;
+                        columnname = columnname.Replace("#", "");
+                        columnname = columnname.Replace("'", "");
+                        columnname = columnname.Replace("&", "");
+
+                        if (!ds.Tables[TableName].Columns.Contains(columnname))
                         {
-                            try
-                            {
-                                DataColumn dc = new DataColumn(aryLine[i]);
-                                dt.Columns.Add(dc);
-                            }
-                            catch (Exception)
-                            {
-                                DataColumn dc = new DataColumn(aryLine[i] + "(1)");
-                                dt.Columns.Add(dc);
-                            }
+                            ds.Tables[TableName].Columns.Add(columnname.ToUpper());
+                            added = true;
+                        }
+                        else
+                        {
+                            i++;
+                            next = "_" + i.ToString();
                         }
                     }
-                    else
+                }
+
+                string AllData = s.ReadToEnd();
+                string[] rows = AllData.Split("\n".ToCharArray());
+
+                foreach (string r in rows)
+                {
+                    string[] items = r.Split(delimiter.ToCharArray());
+                    ds.Tables[TableName].Rows.Add(items);
+                }
+
+                s.Close();
+
+                dt = ds.Tables[0];
+
+                return dt;
+            }
+            return readDataTable;
+        }
+
+        /// <summary>
+        /// 将DataTable中数据写入到CSV文件中
+        /// </summary>
+        /// <param name="dt">提供保存数据的DataTable</param>
+        /// <param name="fileName">CSV的文件路径</param>
+        public void SaveCsv(DataTable dt, string fileName)
+        {
+            FileStream fs = new FileStream(fileName, System.IO.FileMode.Create, System.IO.FileAccess.Write);
+            StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.UTF8);
+
+            string data = "";
+
+            //写出列名称
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                data += dt.Columns[i].ColumnName;
+                if (i < dt.Columns.Count - 1)
+                {
+                    data += ",";
+                }
+            }
+            sw.WriteLine(data);
+
+            //写出各行数据
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                data = "";
+                for (int j = 0; j < dt.Columns.Count; j++)
+                {
+                    data += dt.Rows[i][j].ToString();
+                    if (j < dt.Columns.Count - 1)
                     {
-                        DataRow dr = dt.NewRow(); 
-                        for (int j = 0; j < columnCount; j++)
-                        {
-                            dr[j] = aryLine[j];
-                        }
-                        dt.Rows.Add(dr);
+                        data += ",";
                     }
                 }
-                sr.Close();
-                fs.Close();
+                sw.WriteLine(data);
             }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                sr.Close();
-                fs.Close();
-            }
-            return dt;
+
+            sw.Close();
+            fs.Close();
         }
 
-        #endregion
 
-        #region Private
-        private static DataSet Excel2Data(String filePath, String filter)
+        /// <summary>
+        /// 读取csv文件为DataTable
+        /// </summary>
+        /// <param name="path">文件路径</param>
+        /// <returns></returns>
+        public DataTable ToDataTableByFilePath(string path)
         {
-            OleDbConnection oledbConn = null;
-            try
+            if (File.Exists(path))
             {
-                String path = System.IO.Path.GetFullPath(filePath);
-                String connectionString = null;
+                var reader = ReadAsLines(path);
 
-                if (Path.GetExtension(path) == ".xls")
+                var data = new DataTable();
+
+                //this assume the first record is filled with the column names
+                var headers = reader.First().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var header in headers)
                 {
-                    connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path + ";Extended Properties=\"Excel 8.0;HDR=YES;IMEX=1\"";
+                    data.Columns.Add(header);
                 }
-                else if (Path.GetExtension(path) == ".xlsx")
+
+                var records = reader.Skip(1);
+                foreach (var record in records)
                 {
-                    connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" + path + "; Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
+                    data.Rows.Add(record.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries));
                 }
-                using (oledbConn = new OleDbConnection(connectionString))
-                {
-                    OleDbCommand cmd = new OleDbCommand(); ;
-                    OleDbDataAdapter oleda = new OleDbDataAdapter();
-                    DataSet ds = new DataSet();
-                    cmd.Connection = oledbConn;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = String.IsNullOrEmpty(filter)?"":filter;
-                    oleda = new OleDbDataAdapter(cmd);
-                    oleda.Fill(ds);
-                    return ds;
-                }
+
+                return data;
             }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                oledbConn.Close();
-            }
+
+            return null;
         }
-        #endregion
 
-        #endregion
+        static IEnumerable<string> ReadAsLines(string filename)
+        {
+            using (StreamReader reader = new StreamReader(filename, Encoding.Default))
+                while (!reader.EndOfStream)
+                    yield return reader.ReadLine();
+        }
     }
 }

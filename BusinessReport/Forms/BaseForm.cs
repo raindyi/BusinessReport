@@ -17,9 +17,9 @@ namespace PV.BusinessReport.UI.Forms
         public Boolean BusyState { get; set; }
         public BaseForm()
         {
-            InitializeComponent();
             Fixable = true;
         }
+
         protected void MessageProcess(object sender, MessageEventArgs eventArgs)
         {
             if (MessageHandler != null)
@@ -39,7 +39,7 @@ namespace PV.BusinessReport.UI.Forms
                 const int SC_DOUBLECLICK = 0xf122; //双击窗体标题栏  
                 if ((m.Msg == WM_SYSCOMMAND) && ((int)m.WParam == SC_CLOSE)) //关闭  
                 {
-                    return;
+                    //return;
                 }
                 if ((m.Msg == WM_SYSCOMMAND) && ((int)m.WParam == SC_MAXISIZE)) //最大化  
                 {

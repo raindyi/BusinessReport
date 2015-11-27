@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PV.BusinessReport.UI</RootNamespace>
-    <AssemblyName>BusinessReport</AssemblyName>
+    <AssemblyName>PV.BusinessReport.UI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,8 +35,8 @@
     <ApplicationIcon>Res\1Main.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log">
-      <HintPath>..\PV.BusinessReport.Log\Dll\log.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\PV.BusinessReport.Log\Dll\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,7 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\DataViewGridColumnsConfig.cs" />
+    <Compile Include="Config\MenuConfig.cs" />
     <Compile Include="Events\MessageEventArgs.cs" />
+    <Compile Include="Forms\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,13 +77,36 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TransFlowImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TransFlowImportForm.Designer.cs">
+      <DependentUpon>TransFlowImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserListForm.Designer.cs">
+      <DependentUpon>UserListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GridColumnModel.cs" />
+    <Compile Include="Model\MenuConfigModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TransFlowImportForm.resx">
+      <DependentUpon>TransFlowImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserListForm.resx">
+      <DependentUpon>UserListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -87,6 +118,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="App.config" />
+    <None Include="Data\BusinessReport.pdm" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,7 +134,22 @@
     <Content Include="Res\1Main.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Config\" />
+    <ProjectReference Include="..\PV.BusinessReport.Common\PV.BusinessReport.Common.csproj">
+      <Project>{78edf6a3-7a79-4a7b-8bc4-b530d64cff1b}</Project>
+      <Name>PV.BusinessReport.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PV.BusinessReport.Core\PV.BusinessReport.Core.csproj">
+      <Project>{f9ac540b-86bd-4311-bd27-c34f42aff8d2}</Project>
+      <Name>PV.BusinessReport.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PV.BusinessReport.Log\PV.BusinessReport.Log.csproj">
+      <Project>{7d1c266e-6e96-42fe-a68c-b714478c7fd1}</Project>
+      <Name>PV.BusinessReport.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PV.BusinessReport.PL\PV.BusinessReport.PL.csproj">
+      <Project>{5c77d1d3-f5a1-4093-867e-cec722b8ce05}</Project>
+      <Name>PV.BusinessReport.PL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,6 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\ExcelHelper.cs" />
+    <Compile Include="Helper\InforHelper.cs" />
+    <Compile Include="Helper\Md5Helper.cs" />
+    <Compile Include="Model\HandlingResult.cs" />
+    <Compile Include="Model\UserInformationModel.cs" />
+    <Compile Include="Model\UserQueryModel.cs" />
+    <Compile Include="Model\UserValidationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

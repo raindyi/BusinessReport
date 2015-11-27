@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PV.BusinessReport.Core.Model
+namespace PV.BusinessReport.Common.Model
 {
     public class UserQueryModel
     {

@@ -72,6 +72,7 @@
             this.textBoxPassWord.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBoxPassWord.Location = new System.Drawing.Point(199, 55);
             this.textBoxPassWord.Name = "textBoxPassWord";
+            this.textBoxPassWord.PasswordChar = '*';
             this.textBoxPassWord.Size = new System.Drawing.Size(155, 25);
             this.textBoxPassWord.TabIndex = 3;
             // 
@@ -93,6 +94,7 @@
             this.buttonExit.TabIndex = 5;
             this.buttonExit.Text = "退出";
             this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // buttonLogin
             // 
@@ -103,6 +105,7 @@
             this.buttonLogin.TabIndex = 6;
             this.buttonLogin.Text = "登录";
             this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // labelMessage
             // 

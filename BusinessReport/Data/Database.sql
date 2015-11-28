@@ -1,16 +1,70 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     11/27/2015 20:38:11                          */
+/* Created on:     11/28/2015 18:03:29                          */
 /*==============================================================*/
 
 
+drop table if exists BPSys_Store;
+
+drop table if exists BPSys_StoreSN;
+
+drop table if exists BPSys_User;
+
 drop table if exists Business_TransFlow;
 
-drop table if exists Sys_Store;
+drop table if exists Business_TransFlowCP;
 
-drop table if exists Sys_StoreSN;
+/*==============================================================*/
+/* Table: BPSys_Store                                           */
+/*==============================================================*/
+create table BPSys_Store
+(
+   ID                   char(36),
+   Name                 varchar(64),
+   Phone                varchar(16),
+   Creator              varchar(32),
+   CreatorID            char(36),
+   CreatedTime          datetime
+);
 
-drop table if exists Sys_User;
+alter table BPSys_Store comment 'Èó®Â∫ó‰ø°ÊÅØ';
+
+/*==============================================================*/
+/* Table: BPSys_StoreSN                                         */
+/*==============================================================*/
+create table BPSys_StoreSN
+(
+   ID                   char(36),
+   StoreID              char(36),
+   Code                 varchar(64),
+   Status               tinyint comment '1 ÊúâÊïà
+            2 Êó†Êïà',
+   Creator              varchar(32),
+   CreatorID            char(36),
+   CreatedTime          datetime
+);
+
+alter table BPSys_StoreSN comment 'Èó®Â∫óÊú∫Âô®Á†Å‰ø°ÊÅØ';
+
+/*==============================================================*/
+/* Table: BPSys_User                                            */
+/*==============================================================*/
+create table BPSys_User
+(
+   ID                   char(36),
+   LoginName            varchar(32),
+   Name                 varchar(64),
+   Password             varchar(64),
+   Phone                varchar(16),
+   StoreID              char(36),
+   Status               tinyint comment '1 ÊúâÊïà
+            2 Êó†Êïà',
+   Creator              varchar(32),
+   CreatorID            char(36),
+   CreatedTime          datetime
+);
+
+alter table BPSys_User comment 'Áî®Êà∑‰ø°ÊÅØ';
 
 /*==============================================================*/
 /* Table: Business_TransFlow                                    */
@@ -19,13 +73,12 @@ create table Business_TransFlow
 (
    ID                   char(36),
    SN                   varchar(64),
-   Phone                varchar(16),
    RunningNo            varchar(64),
    ExcTime              datetime,
    ExcSource            varchar(32),
-   NetPay               decimal(11,2) comment '”¶∏∂',
-   Payable              decimal(11,2) comment ' µ∏∂',
-   Handling             decimal(11,2) comment ' ÷–¯∑—',
+   NetPay               decimal(11,2) comment 'Â∫î‰ªò',
+   Payable              decimal(11,2) comment 'ÂÆû‰ªò',
+   Handling             decimal(11,2) comment 'ÊâãÁª≠Ë¥π',
    Statue               varchar(16),
    BankRunningNo        varchar(128),
    Creator              varchar(32),
@@ -33,57 +86,28 @@ create table Business_TransFlow
    CreatedTime          datetime
 );
 
-alter table Business_TransFlow comment 'Ωª“◊¡˜ÀÆ ˝æ›';
+alter table Business_TransFlow comment '‰∫§ÊòìÊµÅÊ∞¥Êï∞ÊçÆ';
 
 /*==============================================================*/
-/* Table: Sys_Store                                             */
+/* Table: Business_TransFlowCP                                  */
 /*==============================================================*/
-create table Sys_Store
+create table Business_TransFlowCP
 (
    ID                   char(36),
-   Name                 varchar(64),
-   Phone                varchar(16),
+   SN                   varchar(64),
+   RunningNo            varchar(64),
+   ExcTime              datetime,
+   ExcSource            varchar(32),
+   NetPay               decimal(11,2) comment 'Â∫î‰ªò',
+   Payable              decimal(11,2) comment 'ÂÆû‰ªò',
+   Handling             decimal(11,2) comment 'ÊâãÁª≠Ë¥π',
+   Statue               varchar(16),
+   BankRunningNo        varchar(128),
+   Bid                  char(36),
    Creator              varchar(32),
    CreatorID            char(36),
    CreatedTime          datetime
 );
 
-alter table Sys_Store comment '√≈µÍ–≈œ¢';
-
-/*==============================================================*/
-/* Table: Sys_StoreSN                                           */
-/*==============================================================*/
-create table Sys_StoreSN
-(
-   ID                   char(36),
-   StoreID              char(36),
-   Code                 varchar(64),
-   Status               tinyint comment '1 ”––ß
-            2 Œﬁ–ß',
-   Creator              varchar(32),
-   CreatorID            char(36),
-   CreatedTime          datetime
-);
-
-alter table Sys_StoreSN comment '√≈µÍª˙∆˜¬Î–≈œ¢';
-
-/*==============================================================*/
-/* Table: Sys_User                                              */
-/*==============================================================*/
-create table Sys_User
-(
-   ID                   char(36),
-   LoginName            varchar(32),
-   Name                 varchar(64),
-   Password             varchar(64),
-   Phone                varchar(16),
-   StoreID              char(36),
-   Status               tinyint comment '1 ”––ß
-            2 Œﬁ–ß',
-   Creator              varchar(32),
-   CreatorID            char(36),
-   CreatedTime          datetime
-);
-
-alter table Sys_User comment '”√ªß–≈œ¢';
+alter table Business_TransFlowCP comment '‰∫§ÊòìÊµÅÊ∞¥Êï∞ÊçÆ‰∏¥Êó∂ÊØîËæÉÊï∞ÊçÆ';
 

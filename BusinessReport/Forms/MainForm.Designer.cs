@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStripOprMain = new System.Windows.Forms.MenuStrip();
             this.tsMenuItemData = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemTransFlowImport = new System.Windows.Forms.ToolStripMenuItem();
@@ -35,12 +37,13 @@
             this.tsMenuItemSystem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemUserManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemStore = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsMenuItemDataDic = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.labelWelcome = new System.Windows.Forms.Label();
             this.linkLabelUser = new System.Windows.Forms.LinkLabel();
             this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.tsMenuItemDataDic = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyIconMessage = new System.Windows.Forms.NotifyIcon(this.components);
             this.menuStripOprMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -94,21 +97,28 @@
             // tsMenuItemUserManagement
             // 
             this.tsMenuItemUserManagement.Name = "tsMenuItemUserManagement";
-            this.tsMenuItemUserManagement.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemUserManagement.Size = new System.Drawing.Size(122, 22);
             this.tsMenuItemUserManagement.Text = "用户管理";
             this.tsMenuItemUserManagement.Click += new System.EventHandler(this.tsMenuItemUserManagement_Click);
             // 
             // tsMenuItemStore
             // 
             this.tsMenuItemStore.Name = "tsMenuItemStore";
-            this.tsMenuItemStore.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemStore.Size = new System.Drawing.Size(122, 22);
             this.tsMenuItemStore.Text = "门店管理";
             this.tsMenuItemStore.Click += new System.EventHandler(this.tsMenuItemStore_Click);
+            // 
+            // tsMenuItemDataDic
+            // 
+            this.tsMenuItemDataDic.Name = "tsMenuItemDataDic";
+            this.tsMenuItemDataDic.Size = new System.Drawing.Size(122, 22);
+            this.tsMenuItemDataDic.Text = "数据字典";
+            this.tsMenuItemDataDic.Click += new System.EventHandler(this.tsMenuItemDataDic_Click);
             // 
             // tsMenuItemAbout
             // 
             this.tsMenuItemAbout.Name = "tsMenuItemAbout";
-            this.tsMenuItemAbout.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemAbout.Size = new System.Drawing.Size(122, 22);
             this.tsMenuItemAbout.Text = "关于";
             this.tsMenuItemAbout.Click += new System.EventHandler(this.tsMenuItemAbout_Click);
             // 
@@ -154,6 +164,7 @@
             this.linkLabelUser.Name = "linkLabelUser";
             this.linkLabelUser.Size = new System.Drawing.Size(150, 20);
             this.linkLabelUser.TabIndex = 0;
+            this.linkLabelUser.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelUser_LinkClicked);
             // 
             // tabControlMain
             // 
@@ -166,12 +177,11 @@
             this.tabControlMain.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControlMain_DrawItem);
             this.tabControlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControlMain_MouseDown);
             // 
-            // tsMenuItemDataDic
+            // notifyIconMessage
             // 
-            this.tsMenuItemDataDic.Name = "tsMenuItemDataDic";
-            this.tsMenuItemDataDic.Size = new System.Drawing.Size(152, 22);
-            this.tsMenuItemDataDic.Text = "数据字典";
-            this.tsMenuItemDataDic.Click += new System.EventHandler(this.tsMenuItemDataDic_Click);
+            this.notifyIconMessage.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconMessage.Icon")));
+            this.notifyIconMessage.Text = "交易流水数据管理系统";
+            this.notifyIconMessage.Visible = true;
             // 
             // MainForm
             // 
@@ -180,9 +190,10 @@
             this.ClientSize = new System.Drawing.Size(672, 416);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.menuStripOprMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripOprMain;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "交易流水数据管理系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -212,6 +223,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemStore;
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemAbout;
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemDataDic;
+        private System.Windows.Forms.NotifyIcon notifyIconMessage;
     }
 }
 

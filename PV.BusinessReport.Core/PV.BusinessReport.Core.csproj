@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lib\BusinessTransFlowAction.cs" />
+    <Compile Include="Lib\SchemaAction.cs" />
+    <Compile Include="Lib\UserAction.cs" />
     <Compile Include="Lib\ValidationAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -49,6 +52,14 @@
     <ProjectReference Include="..\PV.BusinessReport.Common\PV.BusinessReport.Common.csproj">
       <Project>{78edf6a3-7a79-4a7b-8bc4-b530d64cff1b}</Project>
       <Name>PV.BusinessReport.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PV.BusinessReport.DAL\PV.BusinessReport.DAL.csproj">
+      <Project>{e0bdc5fd-a28a-46fd-8dd3-c5a53e987146}</Project>
+      <Name>PV.BusinessReport.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PV.BusinessReport.PL\PV.BusinessReport.PL.csproj">
+      <Project>{5c77d1d3-f5a1-4093-867e-cec722b8ce05}</Project>
+      <Name>PV.BusinessReport.PL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

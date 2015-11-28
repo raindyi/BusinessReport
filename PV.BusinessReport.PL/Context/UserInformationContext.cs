@@ -8,12 +8,10 @@ namespace PV.BusinessReport.PL.Context
     public static class UserInformationContext
     {
         public static Guid ID { get; set; }
-
         public static String Name { get; set; }
-
         public static String MacAddress { get; set; }
         public static String LoginName { get; set; }
         public static DateTime LoginTime { get; set; }
-
+        public static Boolean LoginPass { get; set; }
     }
 }

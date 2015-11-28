@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using PV.BusinessReport.UI.Forms;
 using log4net.Config;
 using PV.BusinessReport.Core.Lib;
+using PV.BusinessReport.PL.Context;
 
 namespace BusinessReport
 {
@@ -21,9 +22,16 @@ namespace BusinessReport
             ValidationAction action=new ValidationAction();
             if (action.ValidateLiceity().Successed)
             {
-                Application.Run(new LoginForm());
-                Application.ApplicationExit += Application_ApplicationExit;
-                Application.Run(new MainForm());
+                LoginForm loginForm=new LoginForm();
+                Application.Run(loginForm);
+                if (UserInformationContext.LoginPass)
+                {
+                    Application.Run(new MainForm());
+                }
+                else
+                {
+                    Application.Exit();
+                }
             }
             else
             {

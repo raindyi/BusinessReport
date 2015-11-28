@@ -98,7 +98,7 @@ namespace PV.BusinessReport.Common.Helper
             switch (fileName.Split('.')[fileName.Split('.').Length - 1])
             {
                 case "xls":
-                    connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'";
+                    connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'";
                     fileType = FileType.xls;
                     break;
                 case "xlsx":

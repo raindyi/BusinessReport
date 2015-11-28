@@ -14,6 +14,9 @@ namespace PV.BusinessReport.UI.Forms
 {
     public partial class LoginForm : Form
     {
+        //private Boolean _loginPass = false;
+        //public Boolean LoginPass { get; }
+
         public LoginForm()
         {
             InitializeComponent();
@@ -40,6 +43,7 @@ namespace PV.BusinessReport.UI.Forms
                     UserInformationContext.Name = user.Name;
                     UserInformationContext.LoginName = user.LoginName;
                     UserInformationContext.LoginTime = DateTime.Now;
+                    UserInformationContext.LoginPass = true;
                     Close();
                 }
                 else

@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using log4net;
+using PV.BusinessReport.PL.Context;
 using PV.BusinessReport.UI.Config;
 using PV.BusinessReport.UI.Model;
 
@@ -30,9 +31,9 @@ namespace PV.BusinessReport.UI.Forms
             _assembly = Assembly.Load("PV.BusinessReport.UI");
             Activator.CreateInstance(_assembly.GetType("PV.BusinessReport.UI.Forms.AboutForm"), true);
             tabControlMain.DrawMode = TabDrawMode.OwnerDrawFixed;
+            linkLabelUser.Text = UserInformationContext.Name;
+            Tag = notifyIconMessage;
         }
-
-        
 
         private void AddForm(String name)
         {
@@ -225,6 +226,11 @@ namespace PV.BusinessReport.UI.Forms
             Init();
         }
 
-        
+        private void linkLabelUser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            PwChangeForm pwChange=new PwChangeForm();
+            pwChange.StartPosition=FormStartPosition.CenterScreen;
+            pwChange.ShowDialog(this);
+        }
     }
 }

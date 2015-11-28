@@ -167,17 +167,20 @@ namespace PV.BusinessReport.UI.Forms
                 if (isClose == true)
                 {
                     BaseForm frm = tabControlMain.SelectedTab.Controls[0] as BaseForm;
-                    if (frm.BusyState)
-                    {
-                        MessageBox.Show("正在处理业务,暂时无法关闭,请等待业务处理完成或手动终止业务", "警告", MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                    }
-                    else
-                    {
-                        frm.Close();
-                        pageDictionary.Remove(tabControlMain.SelectedTab.Tag.ToString());
-                        tabControlMain.TabPages.Remove(tabControlMain.SelectedTab);
-                    }
+                    //if (frm.BusyState)
+                    //{
+                    //    MessageBox.Show("正在处理业务,暂时无法关闭,请等待业务处理完成或手动终止业务", "警告", MessageBoxButtons.OK,
+                    //        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    //}
+                    //else
+                    //{
+                    //    frm.Close();
+                    //    pageDictionary.Remove(tabControlMain.SelectedTab.Tag.ToString());
+                    //    tabControlMain.TabPages.Remove(tabControlMain.SelectedTab);
+                    //}
+                    frm.Close();
+                    pageDictionary.Remove(tabControlMain.SelectedTab.Tag.ToString());
+                    tabControlMain.TabPages.Remove(tabControlMain.SelectedTab);
                 }
             }
         }
@@ -206,6 +209,17 @@ namespace PV.BusinessReport.UI.Forms
         {
             AddForm("DATADICLIST"); 
         }
+
+
+        private void tsMenuItemBTFReport_Click(object sender, EventArgs e)
+        {
+            AddForm("DETAILREPORT");
+        }
+
+        private void tsMenuItemClear_Click(object sender, EventArgs e)
+        {
+            AddForm("SUMMARYREPORT");
+        }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show("是否退出系统?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
@@ -232,5 +246,6 @@ namespace PV.BusinessReport.UI.Forms
             pwChange.StartPosition=FormStartPosition.CenterScreen;
             pwChange.ShowDialog(this);
         }
+
     }
 }

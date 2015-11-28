@@ -29,7 +29,7 @@ namespace PV.BusinessReport.DAL
         public DataTable Query(string sqlstr)
         {
             _connection = GetConn();
-            DataTable dt;
+            DataTable dt=null;
             try
             {
                 MySqlDataAdapter sda = new MySqlDataAdapter(sqlstr, _connection);
@@ -38,7 +38,10 @@ namespace PV.BusinessReport.DAL
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                _log.Error(ex);
+                return dt;
+                //throw new Exception(ex.Message);
+
             }
             finally
             {

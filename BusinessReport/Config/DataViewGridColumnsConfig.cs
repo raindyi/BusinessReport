@@ -8,9 +8,12 @@ namespace PV.BusinessReport.UI.Config
 {
     public static class DataViewGridColumnsConfig
     {
-        public static readonly Dictionary<String, GridColumnModel> PNRTaskSettings = new Dictionary
+        public static readonly Dictionary<String, GridColumnModel> DeatilReportSettings = new Dictionary
             <String, GridColumnModel>()
         {
+            //机器SN号	交易时间	交易流水号	交易来源	实付金额
+            //应付金额	手续费	状态	银行流水单
+
             {
                 "ID", new GridColumnModel()
                 {
@@ -20,69 +23,79 @@ namespace PV.BusinessReport.UI.Config
                 }
             },
             {
-                "SERIALNO", new GridColumnModel()
+                "SN", new GridColumnModel()
                 {
-                    Name = "SERIALNO",
-                    HeadName = "序号",
+                    Name = "SN",
+                    HeadName = "机器SN号",
+                    Width = 120
                 }
             },
-             {
-                "PNR", new GridColumnModel()
+            {
+                "RUNNINGNO", new GridColumnModel()
                 {
-                    Name = "PNR",
-                    HeadName = "PNR",
-                    Width = 60
+                    Name = "RUNNINGNO",
+                    HeadName = "交易流水号",
+                    Width = 120
                 }
             },
-             {
-                "AIRCOMPANY", new GridColumnModel()
+            {
+                "EXCTIME", new GridColumnModel()
                 {
-                    Name = "AIRCOMPANY",
-                    HeadName = "航司",
-                    Width = 100,
+                    Name = "EXCTIME",
+                    HeadName = "交易时间",
+                    Width = 120
                 }
             },
-             {
-                "TICKETNO", new GridColumnModel()
+            {
+                "EXCSOURCE", new GridColumnModel()
                 {
-                    Name = "TICKETNO",
-                    HeadName = "承运人_票号",
-                    Width = 125,
-                }
-            },
-             {
-                "BILLPRICE", new GridColumnModel()
-                {
-                    Name = "BILLPRICE",
-                    HeadName = "账单价",
-                    Width = 100,
-                }
-            },
-             {
-                "ETERMPRICE", new GridColumnModel()
-                {
-                    Name = "ETERMPRICE",
-                    HeadName = "Eterm价格",
-                    Width = 100,
-                }
-            },
-             {
-                "PRICEDIFF", new GridColumnModel()
-                {
-                    Name = "PRICEDIFF",
-                    HeadName = "差价",
-                    Width = 100,
-                }
-            },
+                    Name = "EXCSOURCE",
+                    HeadName = "交易来源",
+                    Width = 100
 
-             {
-                "STATE", new GridColumnModel()
-                {
-                    Name = "STATE",
-                    HeadName = "状态",
-                    Width = 100,
                 }
             },
+            {
+                "NETPAY", new GridColumnModel()
+                {
+                    Name = "NETPAY",
+                    HeadName = "实付金额",
+                    Width = 125
+                }
+            },
+            {
+                "PAYABLE", new GridColumnModel()
+                {
+                    Name = "PAYABLE",
+                    HeadName = "应付金额",
+                    Width = 125
+                }
+            },
+            {
+                "HANDLING", new GridColumnModel()
+                {
+                    Name = "HANDLING",
+                    HeadName = "手续费",
+                    Width = 125
+                }
+            },
+            {
+                "STATUE", new GridColumnModel()
+                {
+                    Name = "STATUE",
+                    HeadName = "状态",
+                    Width = 125
+                }
+            },
+            {
+                "BANKRUNNINGNO", new GridColumnModel()
+                {
+                    Name = "BANKRUNNINGNO",
+                    HeadName = "银行流水单",
+                    Width = 200
+                }
+            }
+
         };
     }
 }

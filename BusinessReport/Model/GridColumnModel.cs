@@ -20,7 +20,7 @@ namespace PV.BusinessReport.UI.Model
         /// </summary>
         public Boolean CanEdit { get; set; }
         /// <summary>
-        /// Gets or sets the visible of the grid,default value is false
+        /// Gets or sets the visible of the grid,default value is true
         /// </summary>
         public Boolean Visible { get; set; }
         /// <summary>

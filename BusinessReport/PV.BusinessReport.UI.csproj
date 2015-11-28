@@ -71,6 +71,12 @@
     <Compile Include="Forms\DataDicListForm.Designer.cs">
       <DependentUpon>DataDicListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DetailReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetailReportForm.Designer.cs">
+      <DependentUpon>DetailReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,12 @@
     <Compile Include="Forms\PwChangeForm.Designer.cs">
       <DependentUpon>PwChangeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SummaryReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SummaryReportForm.Designer.cs">
+      <DependentUpon>SummaryReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TransFlowImportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +113,7 @@
     <Compile Include="Forms\UserListForm.Designer.cs">
       <DependentUpon>UserListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DataGridViewHelper.cs" />
     <Compile Include="Helper\MessageHelper.cs" />
     <Compile Include="Model\GridColumnModel.cs" />
     <Compile Include="Model\MenuConfigModel.cs" />
@@ -111,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DataDicListForm.resx">
       <DependentUpon>DataDicListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetailReportForm.resx">
+      <DependentUpon>DetailReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

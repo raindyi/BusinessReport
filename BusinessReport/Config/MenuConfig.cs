@@ -40,7 +40,23 @@ namespace PV.BusinessReport.UI.Config
                     DialogModel = false,
                     OperateFormFullName = "PV.BusinessReport.UI.Forms.DataDicListForm"
                 }
+            },
+            {
+                "DETAILREPORT",
+                new MenuConfigModel()
+                {
+                    DialogModel = false,
+                    OperateFormFullName = "PV.BusinessReport.UI.Forms.DetailReportForm"
+                }
+            },{
+                "SUMMARYREPORT",
+                new MenuConfigModel()
+                {
+                    DialogModel = false,
+                    OperateFormFullName = "PV.BusinessReport.UI.Forms.SummaryReportForm"
+                }
             }
+
         };
     }
 }

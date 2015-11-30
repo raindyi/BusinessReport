@@ -1,8 +1,12 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     11/28/2015 18:03:29                          */
+/* Created on:     11/30/2015 20:13:42                          */
 /*==============================================================*/
 
+
+drop table if exists BPSys_DataDic;
+
+drop table if exists BPSys_DataDicDetail;
 
 drop table if exists BPSys_Store;
 
@@ -13,6 +17,35 @@ drop table if exists BPSys_User;
 drop table if exists Business_TransFlow;
 
 drop table if exists Business_TransFlowCP;
+
+/*==============================================================*/
+/* Table: BPSys_DataDic                                         */
+/*==============================================================*/
+create table BPSys_DataDic
+(
+   ID                   char(36),
+   Code                 varchar(64),
+   Creator              varchar(32),
+   CreatorID            char(36),
+   CreatedTime          datetime
+);
+
+alter table BPSys_DataDic comment '数据字典';
+
+/*==============================================================*/
+/* Table: BPSys_DataDicDetail                                   */
+/*==============================================================*/
+create table BPSys_DataDicDetail
+(
+   ID                   char(36),
+   Code                 varchar(64),
+   Source               char(36),
+   Creator              varchar(32),
+   CreatorID            char(36),
+   CreatedTime          datetime
+);
+
+alter table BPSys_DataDicDetail comment '数据字典明细';
 
 /*==============================================================*/
 /* Table: BPSys_Store                                           */
@@ -36,6 +69,7 @@ create table BPSys_StoreSN
 (
    ID                   char(36),
    StoreID              char(36),
+   Name                 varchar(64),
    Code                 varchar(64),
    Status               tinyint comment '1 有效
             2 无效',

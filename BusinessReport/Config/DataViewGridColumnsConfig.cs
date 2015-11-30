@@ -97,5 +97,148 @@ namespace PV.BusinessReport.UI.Config
             }
 
         };
+
+        public static readonly Dictionary<String, GridColumnModel> UserSettings = new Dictionary
+            <String, GridColumnModel>()
+        {
+            //ID, LOGINNAME, [NAME], PASSWORD, PHONE, STOREID, STATUS
+            {
+                "ID", new GridColumnModel()
+                {
+                    Name = "ID",
+                    HeadName = "ID",
+                    Visible = false
+                }
+            },
+            {
+                "LOGINNAME", new GridColumnModel()
+                {
+                    Name = "LOGINNAME",
+                    HeadName = "登录名",
+                    Width = 120
+                }
+            },
+            {
+                "NAME", new GridColumnModel()
+                {
+                    Name = "NAME",
+                    HeadName = "姓名",
+                    Width = 120
+                }
+            },
+            {
+                "PHONE", new GridColumnModel()
+                {
+                    Name = "PHONE",
+                    HeadName = "电话",
+                    Width = 120
+                }
+            },
+            {
+                "STATUS", new GridColumnModel()
+                {
+                    Name = "STATUS",
+                    HeadName = "STATUS",
+                    Visible = false
+                }
+            },
+            {
+                "STA", new GridColumnModel()
+                {
+                    Name = "STA",
+                    HeadName = "状态",
+                    Width = 65
+                }
+            }
+        };
+
+        public static readonly Dictionary<String, GridColumnModel> DataDicSettings = new Dictionary
+            <String, GridColumnModel>()
+        {
+            //机器SN号	交易时间	交易流水号	交易来源	实付金额
+            //应付金额	手续费	状态	银行流水单
+
+            {
+                "ID", new GridColumnModel()
+                {
+                    Name = "ID",
+                    HeadName = "ID",
+                    Visible = false
+                }
+            },
+            {
+                "CODE", new GridColumnModel()
+                {
+                    Name = "CODE",
+                    HeadName = "明细",
+                    Width = 300
+                }
+            },
+            {
+                "SCODE", new GridColumnModel()
+                {
+                    Name = "SCODE",
+                    HeadName = "主项",
+                    Width = 200
+                }
+            }
+        };
+
+        public static readonly Dictionary<String, GridColumnModel> StoreSettings = new Dictionary
+            <String, GridColumnModel>()
+        {
+            {
+                "ID", new GridColumnModel()
+                {
+                    Name = "ID",
+                    HeadName = "ID",
+                    Visible = false
+                }
+            },
+            {
+                "NAME", new GridColumnModel()
+                {
+                    Name = "NAME",
+                    HeadName = "名称",
+                    Width = 300
+                }
+            },
+            {
+                "PHONE", new GridColumnModel()
+                {
+                    Name = "PHONE",
+                    HeadName = "电话",
+                    Width = 120
+                }
+            }
+        };
+        public static readonly Dictionary<String, GridColumnModel> SNSettings = new Dictionary
+           <String, GridColumnModel>()
+        {
+            {
+                "ID", new GridColumnModel()
+                {
+                    Name = "ID",
+                    HeadName = "ID",
+                    Visible = false
+                }
+            },
+            {
+                "NAME", new GridColumnModel()
+                {
+                    Name = "NAME",
+                    HeadName = "别名",
+                    Width = 300
+                }
+            },
+            {
+                "CODE", new GridColumnModel()
+                {
+                    Name = "CODE",
+                    HeadName = "SN编号",
+                    Width = 120
+                }
+            }
+        };
     }
 }

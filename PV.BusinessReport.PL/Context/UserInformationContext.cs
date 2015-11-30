@@ -13,5 +13,6 @@ namespace PV.BusinessReport.PL.Context
         public static String LoginName { get; set; }
         public static DateTime LoginTime { get; set; }
         public static Boolean LoginPass { get; set; }
+        public static String StoreId { get; set; }
     }
 }

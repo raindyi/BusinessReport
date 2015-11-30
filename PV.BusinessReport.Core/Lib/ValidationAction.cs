@@ -35,6 +35,7 @@ namespace PV.BusinessReport.Core.Lib
                     Id = Guid.Parse(dt.Rows[0]["ID"].ToString()),
                     LoginName = dt.Rows[0]["LOGINNAME"].ToString(),
                     Name = dt.Rows[0]["NAME"].ToString(),
+                    StoreId = dt.Rows[0]["STOREID"].ToString(),
                 };
                 String pw = Md5Helper.GetMD5String(model.Password);
                 if (pw.Equals(dt.Rows[0]["PASSWORD"].ToString()))

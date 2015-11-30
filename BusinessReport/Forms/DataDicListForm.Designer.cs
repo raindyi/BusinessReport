@@ -35,6 +35,7 @@
             this.comboBoxMainType = new System.Windows.Forms.ComboBox();
             this.labelMainType = new System.Windows.Forms.Label();
             this.dataGridViewList = new System.Windows.Forms.DataGridView();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             // splitContainerMain.Panel1
             // 
+            this.splitContainerMain.Panel1.Controls.Add(this.buttonRefresh);
             this.splitContainerMain.Panel1.Controls.Add(this.buttonAdd);
             this.splitContainerMain.Panel1.Controls.Add(this.textBoxSubName);
             this.splitContainerMain.Panel1.Controls.Add(this.labelSubName);
@@ -70,11 +72,14 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(398, 10);
+            this.buttonAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd.Location = new System.Drawing.Point(398, 9);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdd.Size = new System.Drawing.Size(75, 25);
             this.buttonAdd.TabIndex = 4;
-            this.buttonAdd.Text = "新增";
+            this.buttonAdd.Text = "新增(&X)";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
@@ -121,6 +126,19 @@
             this.dataGridViewList.Size = new System.Drawing.Size(594, 300);
             this.dataGridViewList.TabIndex = 0;
             // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRefresh.Location = new System.Drawing.Point(479, 9);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(75, 25);
+            this.buttonRefresh.TabIndex = 5;
+            this.buttonRefresh.Text = "刷新(&R)";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
             // DataDicListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -150,5 +168,6 @@
         private System.Windows.Forms.TextBox textBoxSubName;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.DataGridView dataGridViewList;
+        private System.Windows.Forms.Button buttonRefresh;
     }
 }

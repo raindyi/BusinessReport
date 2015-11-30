@@ -5,11 +5,13 @@ using System.Text;
 
 namespace PV.BusinessReport.Common.Model
 {
-    public class SnMode
+    public class UserModel
     {
         public Guid Id { get; set; }
-        public String Code { get; set; }
+        public String LoginName { get; set; }
         public String Name { get; set; }
+        public String Password { get; set; }
         public Guid StoreId { get; set; }
+        public String Phone { get; set; }
     }
 }

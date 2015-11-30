@@ -46,6 +46,10 @@
             this.textBoxLoginName = new System.Windows.Forms.TextBox();
             this.labelLoginName = new System.Windows.Forms.Label();
             this.dataGridViewList = new System.Windows.Forms.DataGridView();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonModify = new System.Windows.Forms.Button();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.labelPassword = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -79,7 +83,7 @@
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.splitContainerBottom);
-            this.splitContainerMain.Size = new System.Drawing.Size(750, 456);
+            this.splitContainerMain.Size = new System.Drawing.Size(650, 456);
             this.splitContainerMain.SplitterDistance = 30;
             this.splitContainerMain.TabIndex = 0;
             // 
@@ -98,7 +102,7 @@
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(75, 23);
             this.buttonSearch.TabIndex = 4;
-            this.buttonSearch.Text = "查找";
+            this.buttonSearch.Text = "查找(&C)";
             this.buttonSearch.UseVisualStyleBackColor = true;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
@@ -154,6 +158,10 @@
             // 
             // splitContainerBottom.Panel1
             // 
+            this.splitContainerBottom.Panel1.Controls.Add(this.textBoxPassword);
+            this.splitContainerBottom.Panel1.Controls.Add(this.labelPassword);
+            this.splitContainerBottom.Panel1.Controls.Add(this.buttonModify);
+            this.splitContainerBottom.Panel1.Controls.Add(this.buttonAdd);
             this.splitContainerBottom.Panel1.Controls.Add(this.comboBoxStore);
             this.splitContainerBottom.Panel1.Controls.Add(this.textBoxPhone);
             this.splitContainerBottom.Panel1.Controls.Add(this.labelStore);
@@ -167,14 +175,14 @@
             // splitContainerBottom.Panel2
             // 
             this.splitContainerBottom.Panel2.Controls.Add(this.dataGridViewList);
-            this.splitContainerBottom.Size = new System.Drawing.Size(750, 422);
-            this.splitContainerBottom.SplitterDistance = 30;
+            this.splitContainerBottom.Size = new System.Drawing.Size(650, 422);
+            this.splitContainerBottom.SplitterDistance = 60;
             this.splitContainerBottom.TabIndex = 0;
             // 
             // comboBoxStore
             // 
             this.comboBoxStore.FormattingEnabled = true;
-            this.comboBoxStore.Location = new System.Drawing.Point(598, 5);
+            this.comboBoxStore.Location = new System.Drawing.Point(420, 4);
             this.comboBoxStore.Name = "comboBoxStore";
             this.comboBoxStore.Size = new System.Drawing.Size(135, 21);
             this.comboBoxStore.TabIndex = 9;
@@ -182,7 +190,7 @@
             // 
             // textBoxPhone
             // 
-            this.textBoxPhone.Location = new System.Drawing.Point(420, 6);
+            this.textBoxPhone.Location = new System.Drawing.Point(52, 32);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(135, 20);
             this.textBoxPhone.TabIndex = 5;
@@ -190,7 +198,7 @@
             // labelStore
             // 
             this.labelStore.AutoSize = true;
-            this.labelStore.Location = new System.Drawing.Point(561, 9);
+            this.labelStore.Location = new System.Drawing.Point(383, 8);
             this.labelStore.Name = "labelStore";
             this.labelStore.Size = new System.Drawing.Size(31, 13);
             this.labelStore.TabIndex = 8;
@@ -199,7 +207,7 @@
             // labelPhone
             // 
             this.labelPhone.AutoSize = true;
-            this.labelPhone.Location = new System.Drawing.Point(383, 9);
+            this.labelPhone.Location = new System.Drawing.Point(15, 35);
             this.labelPhone.Name = "labelPhone";
             this.labelPhone.Size = new System.Drawing.Size(31, 13);
             this.labelPhone.TabIndex = 4;
@@ -243,15 +251,53 @@
             this.dataGridViewList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewList.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewList.Name = "dataGridViewList";
-            this.dataGridViewList.Size = new System.Drawing.Size(750, 388);
+            this.dataGridViewList.Size = new System.Drawing.Size(650, 358);
             this.dataGridViewList.TabIndex = 0;
             this.dataGridViewList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewList_MouseClick);
+            this.dataGridViewList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewList_MouseDoubleClick);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Location = new System.Drawing.Point(561, 3);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdd.TabIndex = 10;
+            this.buttonAdd.Text = "新增(&X)";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // buttonModify
+            // 
+            this.buttonModify.Location = new System.Drawing.Point(562, 30);
+            this.buttonModify.Name = "buttonModify";
+            this.buttonModify.Size = new System.Drawing.Size(75, 23);
+            this.buttonModify.TabIndex = 11;
+            this.buttonModify.Text = "修改(&G)";
+            this.buttonModify.UseVisualStyleBackColor = true;
+            this.buttonModify.Click += new System.EventHandler(this.buttonModify_Click);
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Location = new System.Drawing.Point(242, 32);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(135, 20);
+            this.textBoxPassword.TabIndex = 13;
+            // 
+            // labelPassword
+            // 
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(205, 35);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(31, 13);
+            this.labelPassword.TabIndex = 12;
+            this.labelPassword.Text = "密码";
             // 
             // UserListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 456);
+            this.ClientSize = new System.Drawing.Size(650, 456);
             this.Controls.Add(this.splitContainerMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UserListForm";
@@ -292,5 +338,9 @@
         private System.Windows.Forms.ComboBox comboBoxQStore;
         private System.Windows.Forms.ComboBox comboBoxStore;
         private System.Windows.Forms.Label labelStore;
+        private System.Windows.Forms.Button buttonModify;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Label labelPassword;
     }
 }

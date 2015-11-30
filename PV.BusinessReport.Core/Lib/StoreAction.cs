@@ -31,13 +31,15 @@ namespace PV.BusinessReport.Core.Lib
         {
             HandlingResult result=new HandlingResult();
             String sql =
-                "INSERT INTO BPSys_Store(ID, [Name], Phone, Creator, CreatorID, CreatedTime) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')";
+                "INSERT INTO BPSYS_STORE(ID, NAME, PHONE, CREATOR, CREATORID, CREATEDTIME) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')";
             sql = String.Format(sql, model.Id, model.Name, model.Phone, UserInformationContext.LoginName,
                 UserInformationContext.ID, DateTime.Now.ToString(ConfigImformationContext.TIME_FORMAT_FULL));
             using (DataBaseProcess process=new DataBaseProcess())
             {
-                process.Exec(sql);
+                result.MsgNumber= process.Exec(sql);
             }
+            result.Successed = result.MsgNumber > 0;
+            result.Message = result.Successed ? "新增成功" : "新增失败";
             return result;
         }
     }

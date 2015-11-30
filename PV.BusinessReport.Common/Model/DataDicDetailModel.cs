@@ -5,11 +5,10 @@ using System.Text;
 
 namespace PV.BusinessReport.Common.Model
 {
-    public class SnMode
+    public class DataDicDetailModel
     {
         public Guid Id { get; set; }
         public String Code { get; set; }
-        public String Name { get; set; }
-        public Guid StoreId { get; set; }
+        public Guid Source { get; set; }
     }
 }

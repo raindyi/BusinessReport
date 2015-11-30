@@ -44,6 +44,7 @@ namespace PV.BusinessReport.UI.Forms
                     UserInformationContext.LoginName = user.LoginName;
                     UserInformationContext.LoginTime = DateTime.Now;
                     UserInformationContext.LoginPass = true;
+                    UserInformationContext.StoreId = "";
                     Close();
                 }
                 else

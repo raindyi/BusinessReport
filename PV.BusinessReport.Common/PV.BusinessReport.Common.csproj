@@ -43,11 +43,13 @@
     <Compile Include="Helper\ExcelHelper.cs" />
     <Compile Include="Helper\InforHelper.cs" />
     <Compile Include="Helper\Md5Helper.cs" />
+    <Compile Include="Model\DataDicDetailModel.cs" />
     <Compile Include="Model\DetailReportQueryModel.cs" />
     <Compile Include="Model\HandlingResult.cs" />
     <Compile Include="Model\SnMode.cs" />
     <Compile Include="Model\StoreModel.cs" />
     <Compile Include="Model\UserInformationModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\UserQueryModel.cs" />
     <Compile Include="Model\UserValidationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

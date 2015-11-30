@@ -10,5 +10,6 @@ namespace PV.BusinessReport.Common.Model
         public Guid Id { get; set; }
         public String LoginName { get; set; }
         public String Name { get; set; }
+        public String StoreId { get; set; }
     }
 }

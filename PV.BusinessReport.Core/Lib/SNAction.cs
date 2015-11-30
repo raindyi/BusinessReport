@@ -26,7 +26,7 @@ namespace PV.BusinessReport.Core.Lib
             return dt;
         }
 
-         public HandlingResult Add(SnMode model)
+         public HandlingResult Add(SnModel model)
          {
             HandlingResult result = new HandlingResult();
             String sql =

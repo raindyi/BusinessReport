@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PV.BusinessReport.Common.Model
 {
-    public class SnMode
+    public class SnModel
     {
         public Guid Id { get; set; }
         public String Code { get; set; }

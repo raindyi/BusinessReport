@@ -34,6 +34,14 @@ namespace PV.BusinessReport.UI.Config
                 }
             },
             {
+                "STORE",
+                new MenuConfigModel()
+                {
+                    DialogModel = false,
+                    OperateFormFullName = "PV.BusinessReport.UI.Forms.StoreListForm"
+                }
+            },
+            {
                 "DATADICLIST",
                 new MenuConfigModel()
                 {

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     11/30/2015 20:13:42                          */
+/* Created on:     12/01/2015 21:16:04                          */
 /*==============================================================*/
 
 
@@ -17,6 +17,8 @@ drop table if exists BPSys_User;
 drop table if exists Business_TransFlow;
 
 drop table if exists Business_TransFlowCP;
+
+drop table if exists Business_TransFlowT;
 
 /*==============================================================*/
 /* Table: BPSys_DataDic                                         */
@@ -144,4 +146,26 @@ create table Business_TransFlowCP
 );
 
 alter table Business_TransFlowCP comment '交易流水数据临时比较数据';
+
+/*==============================================================*/
+/* Table: Business_TransFlowT                                   */
+/*==============================================================*/
+create table Business_TransFlowT
+(
+   ID                   char(36),
+   SN                   varchar(64),
+   RunningNo            varchar(64),
+   ExcTime              datetime,
+   ExcSource            varchar(32),
+   NetPay               decimal(11,2) comment '应付',
+   Payable              decimal(11,2) comment '实付',
+   Handling             decimal(11,2) comment '手续费',
+   Statue               varchar(16),
+   BankRunningNo        varchar(128),
+   Creator              varchar(32),
+   CreatorID            char(36),
+   CreatedTime          datetime
+);
+
+alter table Business_TransFlowT comment '交易流水数据';
 

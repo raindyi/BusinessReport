@@ -32,14 +32,14 @@ namespace PV.BusinessReport.Core.Lib
             DataTable dt = null;
             if (model != null)
             {
-                String sql = "SELECT U.ID, U.LOGINNAME, U.NAME, U.PHONE, U.STATUS,CASE U.STATUS WHEN 1 THEN '有效' ELSE '无效' END AS STA, S.NAME AS SNAME FROM BPSYS_USER U INNER JOIN BPSYS_STORE S ON U.STOREID = S.ID";
+                String sql = "SELECT U.ID, U.LOGINNAME, U.NAME, U.PHONE, U.STATUS,CASE U.STATUS WHEN 1 THEN '有效' ELSE '无效' END AS STA, S.NAME AS SNAME,U.PASSWORD,U.STOREID FROM BPSYS_USER U INNER JOIN BPSYS_STORE S ON U.STOREID = S.ID";
                 sql += " WHERE 1=1";
                 //where u.[Name] like '%%' or u.Phone ='' or s.[Name] like '%%'
                 if (!String.IsNullOrEmpty(model.Name))
                 {
                     sql += String.Format(" AND U.NAME LIKE '%{0}%'", model.Name);
                 }
-                if (!String.IsNullOrEmpty(model.Name))
+                if (!String.IsNullOrEmpty(model.Phone))
                 {
                     sql += String.Format(" AND U.PHONE ='{0}'", model.Phone);
                 }
@@ -61,19 +61,36 @@ namespace PV.BusinessReport.Core.Lib
             result.Successed = false;
             if (model != null)
             {
+                String querysql =String.Format("SELECT COUNT(1) AS CNT FROM BPSYS_USER WHERE LOGINNAME='{0}'",model.LoginName);
                 String sql =
                     String.Format(
-                        "INSERT INTO BPSYS_USER(ID, LOGINNAME, NAME, PASSWORD, PHONE, STOREID, STATUS, CREATOR, CREATORID, CREATEDTIME) VALUES ({0}, '{1}', '{2}', '{3}', '{4}', {5}, {6}, '{7}', {8}, '{9}')",
+                        "INSERT INTO BPSYS_USER(ID, LOGINNAME, NAME, PASSWORD, PHONE, STOREID, STATUS, CREATOR, CREATORID, CREATEDTIME) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6}, '{7}', '{8}', '{9}')",
                         model.Id, model.LoginName, model.Name, model.Password, model.Phone, model.StoreId, 1,
                         UserInformationContext.LoginName, UserInformationContext.ID,
                         DateTime.Now.ToString(ConfigImformationContext.TIME_FORMAT_FULL));
                 using (DataBaseProcess process=new DataBaseProcess())
                 {
-                    result.MsgNumber= process.Exec(sql);
+                    DataTable dt = process.Query(querysql);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        result.MsgNumber = Int32.Parse(dt.Rows[0]["CNT"].ToString());
+                        if (result.MsgNumber == 0)
+                        {
+                            result.MsgNumber = process.Exec(sql);
+                        }
+                        else
+                        {
+                            result.MsgNumber = 0;
+                            result.Message = String.Format("用户[{0}]已经存在", model.LoginName);
+                        }
+                    }
                 }
             }
             result.Successed = result.MsgNumber > 0;
-            result.Message = result.Successed ? "新增成功" : "新增失败";
+            if (String.IsNullOrEmpty(result.Message))
+            {
+                result.Message = result.Successed ? "新增成功" : "新增失败";
+            }
             return result;
         }
 

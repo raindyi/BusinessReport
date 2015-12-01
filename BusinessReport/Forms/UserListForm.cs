@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using log4net;
 using NPV.BusinessReport.Common.Helper;
 using PV.BusinessReport.Common.Model;
 using PV.BusinessReport.Core.Lib;
@@ -16,6 +17,8 @@ namespace PV.BusinessReport.UI.Forms
 {
     public partial class UserListForm : Form
     {
+        private ILog _log = LogManager.GetLogger(typeof(UserListForm));
+
         private UserAction _action = new UserAction();
         public UserListForm()
         {
@@ -26,11 +29,11 @@ namespace PV.BusinessReport.UI.Forms
         {
             InitControl();
             InitData();
+            InitControlAfterData();
         }
 
         private void InitControl()
         {
-            splitContainerBottom.Panel1.Height = 1;
             dataGridViewList.AllowUserToAddRows = false;
         }
         private void InitData()
@@ -43,20 +46,31 @@ namespace PV.BusinessReport.UI.Forms
                 dr["ID"] = Guid.Empty;
                 dr["NAME"] = "---";
                 dtstore.Rows.InsertAt(dr, 0);
-                comboBoxStore.DataSource = dtstore;
+                
+                comboBoxStore.ValueMember = "ID";
                 comboBoxStore.DisplayMember = "Name";
+                comboBoxStore.DataSource = dtstore;
+                
+                comboBoxQStore.ValueMember = "ID";
+                comboBoxQStore.DisplayMember = "Name";
+                comboBoxQStore.DataSource = dtstore.Copy();
             }
         }
+
+        private void InitControlAfterData()
+        {
+            comboBoxQStore.SelectedIndexChanged += comboBoxQStore_SelectedIndexChanged;
+        }
+        
 
         private void LoadData()
         {
             UserQueryModel model=new UserQueryModel();
             model.Name = textBoxQName.Text.TrimStart().TrimEnd();
             model.Phone = textBoxQPhone.Text.TrimStart().TrimEnd();
-            if (comboBoxStore.SelectedValue != null)
+            if (comboBoxQStore.SelectedValue != null)
             {
-                DataRow dr = ((System.Data.DataRowView)comboBoxStore.SelectedValue).Row;
-                model.Store = Guid.Parse(dr["ID"].ToString());
+                model.Store = Guid.Parse(comboBoxQStore.SelectedValue.ToString());
             }
             DataTable dt= _action.GetList(model);
             Bind(dt);
@@ -81,22 +95,21 @@ namespace PV.BusinessReport.UI.Forms
             model.LoginName = textBoxLoginName.Text.TrimStart().TrimEnd();
             if (comboBoxStore.SelectedValue != null)
             {
-                DataRow dr = ((System.Data.DataRowView) comboBoxStore.SelectedValue).Row;
-                model.StoreId = Guid.Parse(dr["ID"].ToString());
+                model.StoreId = Guid.Parse(comboBoxStore.SelectedValue.ToString());
             }
             if (String.IsNullOrEmpty(model.LoginName))
             {
-                result.Message = "请录入登录名";
+                result.Message += "\r\n请录入登录名";
                 result.Successed = false;
             }
             if (String.IsNullOrEmpty(model.Name))
             {
-                result.Message = "请录入姓名";
+                result.Message += "\r\n请录入姓名";
                 result.Successed = false;
             }
             if (String.IsNullOrEmpty(model.Password))
             {
-                result.Message = "请录入登录密码";
+                result.Message += "\r\n请录入登录密码";
                 result.Successed = false;
             }
             else
@@ -105,7 +118,7 @@ namespace PV.BusinessReport.UI.Forms
             }
             if (model.StoreId == null || model.StoreId == Guid.Empty)
             {
-                result.Message = "请选择门店";
+                result.Message += "\r\n请选择门店";
                 result.Successed = false;
             }
             model.Id = Guid.NewGuid();
@@ -119,10 +132,11 @@ namespace PV.BusinessReport.UI.Forms
             if (result.Successed)
             {
                 UserModel model = (UserModel) result.Result;
+                _action=new UserAction();
                 result= _action.Add(model);
                 if (result.Successed)
                 {
-                    MessageHelper.ShowErrorNotify(this, result.Message);
+                    MessageHelper.ShowInformationNotify(this, result.Message);
                 }
                 else
                 {
@@ -144,7 +158,7 @@ namespace PV.BusinessReport.UI.Forms
                 result = _action.Modify(model);
                 if (result.Successed)
                 {
-                    MessageHelper.ShowErrorNotify(this, result.Message);
+                    MessageHelper.ShowInformationNotify(this, result.Message);
                 }
                 else
                 {
@@ -203,7 +217,20 @@ namespace PV.BusinessReport.UI.Forms
 
         private void dataGridViewList_MouseClick(object sender, MouseEventArgs e)
         {
-            
+            try
+            {
+                DataRowView drv = (DataRowView)dataGridViewList.CurrentRow.DataBoundItem;
+                DataRow dr = drv.Row;
+                textBoxLoginName.Text = dr["LoginName"].ToString();
+                textBoxName.Text = dr["Name"].ToString();
+                textBoxPassword.Text = dr["Password"].ToString(); ;
+                textBoxPhone.Text = dr["Phone"].ToString();
+                comboBoxStore.SelectedValue = dr["StoreId"];
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+            }
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -214,11 +241,6 @@ namespace PV.BusinessReport.UI.Forms
         private void comboBoxQStore_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadData();
-        }
-
-        private void comboBoxStore_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         #endregion
 
@@ -235,6 +257,21 @@ namespace PV.BusinessReport.UI.Forms
         private void dataGridViewList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //TODO del
+            try
+            {
+                DataRowView drv = (DataRowView)dataGridViewList.CurrentRow.DataBoundItem;
+                DataRow dr = drv.Row;
+                DialogResult result= MessageBox.Show(String.Format("确认删除[{0}]?", dr["LoginName"]), "提示", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    _action=new UserAction();
+                    _action.Delete(Guid.Parse(dr["ID"].ToString()));
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+            }
         }
     }
 }

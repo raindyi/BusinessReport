@@ -29,14 +29,28 @@ namespace PV.BusinessReport.Core.Lib
          public HandlingResult Add(SnModel model)
          {
             HandlingResult result = new HandlingResult();
+             String querysql =String.Format("SELECT COUNT(1) AS CNT FROM BPSYS_STORESN WHERE SN='{0}'",model.Code);
             String sql =
-                "INSERT INTO BPSYS_STORESN(ID, StoreID, Name, Code, Status, Creator, CreatorID, CreatedTime) VALUES ({0}, {1}, '{2}', '{3}', {4}, '{5}', {6}, '{7}')";
+                "INSERT INTO BPSYS_STORESN(ID, STOREID, NAME, CODE, STATUS, CREATOR, CREATORID, CREATEDTIME) VALUES ('{0}', '{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}')";
              sql = String.Format(sql, model.Id, model.StoreId, model.Name, model.Code, 1,
                  UserInformationContext.LoginName,
                  UserInformationContext.ID, DateTime.Now.ToString(ConfigImformationContext.TIME_FORMAT_FULL));
             using (DataBaseProcess process = new DataBaseProcess())
             {
-                result.MsgNumber = process.Exec(sql);
+                DataTable dt = process.Query(querysql);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    result.MsgNumber = Int32.Parse(dt.Rows[0]["CNT"].ToString());
+                    if (result.MsgNumber == 0)
+                    {
+                        result.MsgNumber = process.Exec(sql);
+                    }
+                    else
+                    {
+                        result.MsgNumber = 0;
+                        result.Message = String.Format("SN[{0}]已经存在", model.Code);
+                    }
+                }
             }
             result.Successed = result.MsgNumber > 0;
             result.Message = result.Successed ? "新增成功" : "新增失败";

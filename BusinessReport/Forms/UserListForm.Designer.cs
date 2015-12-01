@@ -37,6 +37,10 @@
             this.textBoxQName = new System.Windows.Forms.TextBox();
             this.labelQName = new System.Windows.Forms.Label();
             this.splitContainerBottom = new System.Windows.Forms.SplitContainer();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.buttonModify = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.comboBoxStore = new System.Windows.Forms.ComboBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.labelStore = new System.Windows.Forms.Label();
@@ -46,10 +50,6 @@
             this.textBoxLoginName = new System.Windows.Forms.TextBox();
             this.labelLoginName = new System.Windows.Forms.Label();
             this.dataGridViewList = new System.Windows.Forms.DataGridView();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonModify = new System.Windows.Forms.Button();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.labelPassword = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -79,12 +79,13 @@
             this.splitContainerMain.Panel1.Controls.Add(this.labelQPhone);
             this.splitContainerMain.Panel1.Controls.Add(this.textBoxQName);
             this.splitContainerMain.Panel1.Controls.Add(this.labelQName);
+            this.splitContainerMain.Panel1MinSize = 30;
             // 
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.splitContainerBottom);
             this.splitContainerMain.Size = new System.Drawing.Size(650, 456);
-            this.splitContainerMain.SplitterDistance = 30;
+            this.splitContainerMain.SplitterDistance = 35;
             this.splitContainerMain.TabIndex = 0;
             // 
             // comboBoxQStore
@@ -94,13 +95,15 @@
             this.comboBoxQStore.Name = "comboBoxQStore";
             this.comboBoxQStore.Size = new System.Drawing.Size(135, 21);
             this.comboBoxQStore.TabIndex = 7;
-            this.comboBoxQStore.SelectedIndexChanged += new System.EventHandler(this.comboBoxQStore_SelectedIndexChanged);
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(562, 4);
+            this.buttonSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.buttonSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSearch.Location = new System.Drawing.Point(561, 3);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.Size = new System.Drawing.Size(80, 25);
             this.buttonSearch.TabIndex = 4;
             this.buttonSearch.Text = "查找(&C)";
             this.buttonSearch.UseVisualStyleBackColor = true;
@@ -175,9 +178,52 @@
             // splitContainerBottom.Panel2
             // 
             this.splitContainerBottom.Panel2.Controls.Add(this.dataGridViewList);
-            this.splitContainerBottom.Size = new System.Drawing.Size(650, 422);
-            this.splitContainerBottom.SplitterDistance = 60;
+            this.splitContainerBottom.Size = new System.Drawing.Size(650, 417);
+            this.splitContainerBottom.SplitterDistance = 65;
             this.splitContainerBottom.TabIndex = 0;
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Location = new System.Drawing.Point(242, 32);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(135, 20);
+            this.textBoxPassword.TabIndex = 13;
+            // 
+            // labelPassword
+            // 
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(205, 35);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(31, 13);
+            this.labelPassword.TabIndex = 12;
+            this.labelPassword.Text = "密码";
+            // 
+            // buttonModify
+            // 
+            this.buttonModify.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.buttonModify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonModify.Location = new System.Drawing.Point(561, 35);
+            this.buttonModify.Name = "buttonModify";
+            this.buttonModify.Size = new System.Drawing.Size(80, 25);
+            this.buttonModify.TabIndex = 11;
+            this.buttonModify.Text = "修改(&G)";
+            this.buttonModify.UseVisualStyleBackColor = true;
+            this.buttonModify.Click += new System.EventHandler(this.buttonModify_Click);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd.Location = new System.Drawing.Point(561, 3);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(80, 25);
+            this.buttonAdd.TabIndex = 10;
+            this.buttonAdd.Text = "新增(&X)";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // comboBoxStore
             // 
@@ -186,7 +232,6 @@
             this.comboBoxStore.Name = "comboBoxStore";
             this.comboBoxStore.Size = new System.Drawing.Size(135, 21);
             this.comboBoxStore.TabIndex = 9;
-            this.comboBoxStore.SelectedIndexChanged += new System.EventHandler(this.comboBoxStore_SelectedIndexChanged);
             // 
             // textBoxPhone
             // 
@@ -251,47 +296,9 @@
             this.dataGridViewList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewList.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewList.Name = "dataGridViewList";
-            this.dataGridViewList.Size = new System.Drawing.Size(650, 358);
+            this.dataGridViewList.Size = new System.Drawing.Size(650, 348);
             this.dataGridViewList.TabIndex = 0;
             this.dataGridViewList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewList_MouseClick);
-            this.dataGridViewList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewList_MouseDoubleClick);
-            // 
-            // buttonAdd
-            // 
-            this.buttonAdd.Location = new System.Drawing.Point(561, 3);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
-            this.buttonAdd.TabIndex = 10;
-            this.buttonAdd.Text = "新增(&X)";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
-            // 
-            // buttonModify
-            // 
-            this.buttonModify.Location = new System.Drawing.Point(562, 30);
-            this.buttonModify.Name = "buttonModify";
-            this.buttonModify.Size = new System.Drawing.Size(75, 23);
-            this.buttonModify.TabIndex = 11;
-            this.buttonModify.Text = "修改(&G)";
-            this.buttonModify.UseVisualStyleBackColor = true;
-            this.buttonModify.Click += new System.EventHandler(this.buttonModify_Click);
-            // 
-            // textBoxPassword
-            // 
-            this.textBoxPassword.Location = new System.Drawing.Point(242, 32);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(135, 20);
-            this.textBoxPassword.TabIndex = 13;
-            // 
-            // labelPassword
-            // 
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(205, 35);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(31, 13);
-            this.labelPassword.TabIndex = 12;
-            this.labelPassword.Text = "密码";
             // 
             // UserListForm
             // 

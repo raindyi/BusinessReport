@@ -115,7 +115,7 @@ namespace PV.BusinessReport.UI.Config
                 {
                     Name = "LOGINNAME",
                     HeadName = "登录名",
-                    Width = 120
+                    Width = 175
                 }
             },
             {
@@ -123,7 +123,7 @@ namespace PV.BusinessReport.UI.Config
                 {
                     Name = "NAME",
                     HeadName = "姓名",
-                    Width = 120
+                    Width = 175
                 }
             },
             {
@@ -132,6 +132,14 @@ namespace PV.BusinessReport.UI.Config
                     Name = "PHONE",
                     HeadName = "电话",
                     Width = 120
+                }
+            },
+            {
+                "SNAME", new GridColumnModel()
+                {
+                    Name = "SNAME",
+                    HeadName = "门店",
+                    Width = 200
                 }
             },
             {
@@ -147,7 +155,25 @@ namespace PV.BusinessReport.UI.Config
                 {
                     Name = "STA",
                     HeadName = "状态",
-                    Width = 65
+                    Width = 80
+                }
+            },
+            {
+                "PASSWORD", new GridColumnModel()
+                {
+                    Name = "PASSWORD",
+                    HeadName = "PW",
+                    Width = 80,
+                    Visible = false
+                }
+            },
+            {
+                "STOREID", new GridColumnModel()
+                {
+                    Name = "STOREID",
+                    HeadName = "门店ID",
+                    Width = 80,
+                    Visible = false
                 }
             }
         };
@@ -175,7 +201,7 @@ namespace PV.BusinessReport.UI.Config
                 }
             },
             {
-                "SCODE", new GridColumnModel()
+                "DCODE", new GridColumnModel()
                 {
                     Name = "SCODE",
                     HeadName = "主项",
@@ -228,7 +254,7 @@ namespace PV.BusinessReport.UI.Config
                 {
                     Name = "NAME",
                     HeadName = "别名",
-                    Width = 300
+                    Width = 265
                 }
             },
             {

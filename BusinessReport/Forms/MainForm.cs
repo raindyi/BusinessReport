@@ -166,7 +166,7 @@ namespace PV.BusinessReport.UI.Forms
                 bool isClose = x > myTabRect.X && x < myTabRect.Right && y > myTabRect.Y && y < myTabRect.Bottom;
                 if (isClose == true)
                 {
-                    BaseForm frm = tabControlMain.SelectedTab.Controls[0] as BaseForm;
+                    Form frm = tabControlMain.SelectedTab.Controls[0] as Form;
                     //if (frm.BusyState)
                     //{
                     //    MessageBox.Show("正在处理业务,暂时无法关闭,请等待业务处理完成或手动终止业务", "警告", MessageBoxButtons.OK,
@@ -197,7 +197,7 @@ namespace PV.BusinessReport.UI.Forms
 
         private void tsMenuItemStore_Click(object sender, EventArgs e)
         {
-            //AddForm("ABOUT");
+            AddForm("STORE");
         }
 
         private void tsMenuItemAbout_Click(object sender, EventArgs e)

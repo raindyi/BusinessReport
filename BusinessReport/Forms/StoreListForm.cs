@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using log4net;
 using PV.BusinessReport.Common.Model;
 using PV.BusinessReport.Core.Lib;
 using PV.BusinessReport.UI.Config;
@@ -13,18 +14,24 @@ using PV.BusinessReport.UI.Helper;
 
 namespace PV.BusinessReport.UI.Forms
 {
-    public partial class StoreForm : Form
+    public partial class StoreListForm : Form
     {
         private StoreAction _action=new StoreAction();
-        public StoreForm()
+        private ILog _log = LogManager.GetLogger(typeof (StoreListForm));
+        private Guid _selStoreId = Guid.Empty;
+        public StoreListForm()
         {
             InitializeComponent();
         }
         private void Init()
         {
+            InitControl();
             LodaData();
         }
-
+        private void InitControl()
+        {
+            dataGridViewList.AllowUserToAddRows = false;
+        }
         private void LodaData()
         {
             DataTable dt= _action.Query();
@@ -64,6 +71,16 @@ namespace PV.BusinessReport.UI.Forms
         private HandlingResult ValidateStoreSave()
         {
             HandlingResult result=new HandlingResult();
+            StoreModel model=new StoreModel();
+            model.Name = textBoxName.Text.TrimStart().TrimEnd();
+            model.Phone = textBoxPhone.Text.TrimStart().TrimEnd();
+            if (String.IsNullOrEmpty(model.Name))
+            {
+                result.Successed = false;
+                result.Message = "请填写门店名称";
+            }
+            model.Id = Guid.NewGuid();
+            result.Result = model;
             return result;
         }
 
@@ -93,6 +110,27 @@ namespace PV.BusinessReport.UI.Forms
         private HandlingResult ValidateSNSave()
         {
             HandlingResult result = new HandlingResult();
+            SnModel model = new SnModel();
+            model.Name = textBoxSnName.Text.TrimStart().TrimEnd();
+            model.Code = textBoxSnCode.Text.TrimStart().TrimEnd();
+            model.StoreId = _selStoreId;
+            if (String.IsNullOrEmpty(model.Name))
+            {
+                result.Successed = false;
+                result.Message += "\r\n请填写SN别名";
+            }
+            if (String.IsNullOrEmpty(model.Code))
+            {
+                result.Successed = false;
+                result.Message += "\r\n请填写SN";
+            }
+            if (model.StoreId==null || model.StoreId.Equals(Guid.Empty))
+            {
+                result.Successed = false;
+                result.Message += "\r\n请选择门店";
+            }
+            model.Id = Guid.NewGuid();
+            result.Result = model;
             return result;
         }
 
@@ -118,12 +156,33 @@ namespace PV.BusinessReport.UI.Forms
 
         private void dataGridViewList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
+            try
+            {
+                DataRowView drv = (DataRowView)dataGridViewList.CurrentRow.DataBoundItem;
+                DataRow dr = drv.Row;
+                SNForm snForm = new SNForm();
+                snForm.StoreId = Guid.Parse(dr["ID"].ToString());
+                snForm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                _log.Error("View Sn information error::", ex);
+            }
         }
 
         private void dataGridViewList_MouseClick(object sender, MouseEventArgs e)
         {
-
+            try
+            {
+                DataRowView drv = (DataRowView)dataGridViewList.CurrentRow.DataBoundItem;
+                DataRow dr = drv.Row;
+                textBoxStoreName.Text = dr["Name"].ToString();
+                Guid.TryParse(dr["ID"].ToString(), out _selStoreId);
+            }
+            catch (Exception ex)
+            {
+                _log.Error("View Sn information error::", ex);
+            }
         }
     }
 }

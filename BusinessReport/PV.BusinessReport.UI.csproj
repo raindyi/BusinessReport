@@ -95,11 +95,17 @@
     <Compile Include="Forms\PwChangeForm.Designer.cs">
       <DependentUpon>PwChangeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\StoreForm.cs">
+    <Compile Include="Forms\SNForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\StoreForm.Designer.cs">
-      <DependentUpon>StoreForm.cs</DependentUpon>
+    <Compile Include="Forms\SNForm.Designer.cs">
+      <DependentUpon>SNForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StoreListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StoreListForm.Designer.cs">
+      <DependentUpon>StoreListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SummaryReportForm.cs">
       <SubType>Form</SubType>
@@ -143,8 +149,11 @@
     <EmbeddedResource Include="Forms\PwChangeForm.resx">
       <DependentUpon>PwChangeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StoreForm.resx">
-      <DependentUpon>StoreForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SNForm.resx">
+      <DependentUpon>SNForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StoreListForm.resx">
+      <DependentUpon>StoreListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TransFlowImportForm.resx">
       <DependentUpon>TransFlowImportForm.cs</DependentUpon>

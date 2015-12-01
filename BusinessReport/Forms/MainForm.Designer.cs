@@ -34,20 +34,20 @@
             this.tsMenuItemData = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemTransFlowImport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsMenuItemBTFReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemSystem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemUserManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemStore = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemDataDic = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.labelWelcome = new System.Windows.Forms.Label();
             this.linkLabelUser = new System.Windows.Forms.LinkLabel();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.notifyIconMessage = new System.Windows.Forms.NotifyIcon(this.components);
-            this.tsMenuItemBTFReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStripOprMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -77,7 +77,7 @@
             // tsMenuItemTransFlowImport
             // 
             this.tsMenuItemTransFlowImport.Name = "tsMenuItemTransFlowImport";
-            this.tsMenuItemTransFlowImport.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemTransFlowImport.Size = new System.Drawing.Size(146, 22);
             this.tsMenuItemTransFlowImport.Text = "交易流水导入";
             this.tsMenuItemTransFlowImport.Click += new System.EventHandler(this.tsMenuItemTransFlowImport_Click);
             // 
@@ -90,6 +90,25 @@
             this.tsMenuItemReport.Name = "tsMenuItemReport";
             this.tsMenuItemReport.Size = new System.Drawing.Size(67, 20);
             this.tsMenuItemReport.Text = "报表业务";
+            // 
+            // tsMenuItemBTFReport
+            // 
+            this.tsMenuItemBTFReport.Name = "tsMenuItemBTFReport";
+            this.tsMenuItemBTFReport.Size = new System.Drawing.Size(146, 22);
+            this.tsMenuItemBTFReport.Text = "交易流水报表";
+            this.tsMenuItemBTFReport.Click += new System.EventHandler(this.tsMenuItemBTFReport_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            // 
+            // tsMenuItemClear
+            // 
+            this.tsMenuItemClear.Name = "tsMenuItemClear";
+            this.tsMenuItemClear.Size = new System.Drawing.Size(146, 22);
+            this.tsMenuItemClear.Text = "报表数据清理";
+            this.tsMenuItemClear.Click += new System.EventHandler(this.tsMenuItemClear_Click);
             // 
             // tsMenuItemSystem
             // 
@@ -106,28 +125,33 @@
             // tsMenuItemUserManagement
             // 
             this.tsMenuItemUserManagement.Name = "tsMenuItemUserManagement";
-            this.tsMenuItemUserManagement.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemUserManagement.Size = new System.Drawing.Size(122, 22);
             this.tsMenuItemUserManagement.Text = "用户管理";
             this.tsMenuItemUserManagement.Click += new System.EventHandler(this.tsMenuItemUserManagement_Click);
             // 
             // tsMenuItemStore
             // 
             this.tsMenuItemStore.Name = "tsMenuItemStore";
-            this.tsMenuItemStore.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemStore.Size = new System.Drawing.Size(122, 22);
             this.tsMenuItemStore.Text = "门店管理";
             this.tsMenuItemStore.Click += new System.EventHandler(this.tsMenuItemStore_Click);
             // 
             // tsMenuItemDataDic
             // 
             this.tsMenuItemDataDic.Name = "tsMenuItemDataDic";
-            this.tsMenuItemDataDic.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemDataDic.Size = new System.Drawing.Size(122, 22);
             this.tsMenuItemDataDic.Text = "数据字典";
             this.tsMenuItemDataDic.Click += new System.EventHandler(this.tsMenuItemDataDic_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(119, 6);
             // 
             // tsMenuItemAbout
             // 
             this.tsMenuItemAbout.Name = "tsMenuItemAbout";
-            this.tsMenuItemAbout.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemAbout.Size = new System.Drawing.Size(122, 22);
             this.tsMenuItemAbout.Text = "关于";
             this.tsMenuItemAbout.Click += new System.EventHandler(this.tsMenuItemAbout_Click);
             // 
@@ -142,17 +166,17 @@
             // 
             // splitContainerMain.Panel1
             // 
+            this.splitContainerMain.Panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.splitContainerMain.Panel1.Controls.Add(this.labelWelcome);
             this.splitContainerMain.Panel1.Controls.Add(this.linkLabelUser);
             this.splitContainerMain.Panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainerMain.Panel1MinSize = 30;
             // 
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.tabControlMain);
             this.splitContainerMain.Panel2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.splitContainerMain.Size = new System.Drawing.Size(672, 392);
-            this.splitContainerMain.SplitterDistance = 30;
+            this.splitContainerMain.SplitterDistance = 25;
             this.splitContainerMain.TabIndex = 1;
             // 
             // labelWelcome
@@ -161,7 +185,7 @@
             this.labelWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelWelcome.Location = new System.Drawing.Point(457, 5);
             this.labelWelcome.Name = "labelWelcome";
-            this.labelWelcome.Size = new System.Drawing.Size(60, 20);
+            this.labelWelcome.Size = new System.Drawing.Size(60, 15);
             this.labelWelcome.TabIndex = 1;
             this.labelWelcome.Text = "欢迎您:";
             // 
@@ -171,7 +195,7 @@
             this.linkLabelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabelUser.Location = new System.Drawing.Point(517, 5);
             this.linkLabelUser.Name = "linkLabelUser";
-            this.linkLabelUser.Size = new System.Drawing.Size(150, 20);
+            this.linkLabelUser.Size = new System.Drawing.Size(150, 15);
             this.linkLabelUser.TabIndex = 0;
             this.linkLabelUser.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelUser_LinkClicked);
             // 
@@ -181,7 +205,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(3, 2);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(666, 353);
+            this.tabControlMain.Size = new System.Drawing.Size(666, 358);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControlMain_DrawItem);
             this.tabControlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControlMain_MouseDown);
@@ -191,30 +215,6 @@
             this.notifyIconMessage.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconMessage.Icon")));
             this.notifyIconMessage.Text = "交易流水数据管理系统";
             this.notifyIconMessage.Visible = true;
-            // 
-            // tsMenuItemBTFReport
-            // 
-            this.tsMenuItemBTFReport.Name = "tsMenuItemBTFReport";
-            this.tsMenuItemBTFReport.Size = new System.Drawing.Size(170, 22);
-            this.tsMenuItemBTFReport.Text = "交易流水报表";
-            this.tsMenuItemBTFReport.Click += new System.EventHandler(this.tsMenuItemBTFReport_Click);
-            // 
-            // tsMenuItemClear
-            // 
-            this.tsMenuItemClear.Name = "tsMenuItemClear";
-            this.tsMenuItemClear.Size = new System.Drawing.Size(152, 22);
-            this.tsMenuItemClear.Text = "报表数据清理";
-            this.tsMenuItemClear.Click += new System.EventHandler(this.tsMenuItemClear_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(167, 6);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // MainForm
             // 

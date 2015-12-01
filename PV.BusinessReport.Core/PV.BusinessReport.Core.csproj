@@ -45,6 +45,7 @@
     <Compile Include="Lib\BusinessTransFlowAction.cs" />
     <Compile Include="Lib\DataDicAction.cs" />
     <Compile Include="Lib\DetailReportAction.cs" />
+    <Compile Include="Lib\ReportClearAction.cs" />
     <Compile Include="Lib\SchemaAction.cs" />
     <Compile Include="Lib\SNAction.cs" />
     <Compile Include="Lib\StoreAction.cs" />

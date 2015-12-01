@@ -119,6 +119,12 @@
     <Compile Include="Forms\TransFlowImportForm.Designer.cs">
       <DependentUpon>TransFlowImportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TransforReportDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TransforReportDataForm.Designer.cs">
+      <DependentUpon>TransforReportDataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UserListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TransFlowImportForm.resx">
       <DependentUpon>TransFlowImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TransforReportDataForm.resx">
+      <DependentUpon>TransforReportDataForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserListForm.resx">
       <DependentUpon>UserListForm.cs</DependentUpon>

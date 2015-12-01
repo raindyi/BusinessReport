@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-            this.dataGridViewList = new System.Windows.Forms.DataGridView();
-            this.comboBoxStore = new System.Windows.Forms.ComboBox();
-            this.labelStore = new System.Windows.Forms.Label();
+            this.dateTimePickerFinish = new System.Windows.Forms.DateTimePicker();
+            this.labelFinish = new System.Windows.Forms.Label();
+            this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
+            this.labelStartTime = new System.Windows.Forms.Label();
+            this.buttonQuery = new System.Windows.Forms.Button();
+            this.textBoxSN = new System.Windows.Forms.TextBox();
+            this.labelSN = new System.Windows.Forms.Label();
             this.labelSource = new System.Windows.Forms.Label();
             this.comboBoxSource = new System.Windows.Forms.ComboBox();
-            this.labelSN = new System.Windows.Forms.Label();
-            this.textBoxSN = new System.Windows.Forms.TextBox();
-            this.buttonQuery = new System.Windows.Forms.Button();
-            this.labelStartTime = new System.Windows.Forms.Label();
-            this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
-            this.labelFinish = new System.Windows.Forms.Label();
-            this.dateTimePickerFinish = new System.Windows.Forms.DateTimePicker();
+            this.labelStore = new System.Windows.Forms.Label();
+            this.comboBoxStore = new System.Windows.Forms.ComboBox();
+            this.dataGridViewList = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -77,34 +77,72 @@
             this.splitContainerMain.SplitterDistance = 75;
             this.splitContainerMain.TabIndex = 0;
             // 
-            // dataGridViewList
+            // dateTimePickerFinish
             // 
-            this.dataGridViewList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewList.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewList.Name = "dataGridViewList";
-            this.dataGridViewList.Size = new System.Drawing.Size(749, 405);
-            this.dataGridViewList.TabIndex = 0;
+            this.dateTimePickerFinish.Location = new System.Drawing.Point(291, 7);
+            this.dateTimePickerFinish.Name = "dateTimePickerFinish";
+            this.dateTimePickerFinish.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerFinish.TabIndex = 10;
+            this.dateTimePickerFinish.ValueChanged += new System.EventHandler(this.dateTimePickerFinish_ValueChanged);
             // 
-            // comboBoxStore
+            // labelFinish
             // 
-            this.comboBoxStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxStore.FormattingEnabled = true;
-            this.comboBoxStore.Location = new System.Drawing.Point(56, 33);
-            this.comboBoxStore.Name = "comboBoxStore";
-            this.comboBoxStore.Size = new System.Drawing.Size(125, 24);
-            this.comboBoxStore.TabIndex = 0;
-            this.comboBoxStore.SelectedIndexChanged += new System.EventHandler(this.comboBoxStore_SelectedIndexChanged);
+            this.labelFinish.AutoSize = true;
+            this.labelFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFinish.Location = new System.Drawing.Point(262, 9);
+            this.labelFinish.Name = "labelFinish";
+            this.labelFinish.Size = new System.Drawing.Size(23, 16);
+            this.labelFinish.TabIndex = 9;
+            this.labelFinish.Text = "至";
             // 
-            // labelStore
+            // dateTimePickerStart
             // 
-            this.labelStore.AutoSize = true;
-            this.labelStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStore.Location = new System.Drawing.Point(12, 37);
-            this.labelStore.Name = "labelStore";
-            this.labelStore.Size = new System.Drawing.Size(38, 16);
-            this.labelStore.TabIndex = 1;
-            this.labelStore.Text = "门店";
+            this.dateTimePickerStart.Location = new System.Drawing.Point(56, 7);
+            this.dateTimePickerStart.Name = "dateTimePickerStart";
+            this.dateTimePickerStart.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerStart.TabIndex = 8;
+            this.dateTimePickerStart.ValueChanged += new System.EventHandler(this.dateTimePickerStart_ValueChanged);
+            // 
+            // labelStartTime
+            // 
+            this.labelStartTime.AutoSize = true;
+            this.labelStartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStartTime.Location = new System.Drawing.Point(12, 9);
+            this.labelStartTime.Name = "labelStartTime";
+            this.labelStartTime.Size = new System.Drawing.Size(38, 16);
+            this.labelStartTime.TabIndex = 7;
+            this.labelStartTime.Text = "开始";
+            // 
+            // buttonQuery
+            // 
+            this.buttonQuery.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.buttonQuery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonQuery.Location = new System.Drawing.Point(565, 5);
+            this.buttonQuery.Name = "buttonQuery";
+            this.buttonQuery.Size = new System.Drawing.Size(75, 25);
+            this.buttonQuery.TabIndex = 6;
+            this.buttonQuery.Text = "查询(&C)";
+            this.buttonQuery.UseVisualStyleBackColor = true;
+            this.buttonQuery.Click += new System.EventHandler(this.buttonQuery_Click);
+            // 
+            // textBoxSN
+            // 
+            this.textBoxSN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSN.Location = new System.Drawing.Point(440, 34);
+            this.textBoxSN.Name = "textBoxSN";
+            this.textBoxSN.Size = new System.Drawing.Size(200, 22);
+            this.textBoxSN.TabIndex = 5;
+            // 
+            // labelSN
+            // 
+            this.labelSN.AutoSize = true;
+            this.labelSN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSN.Location = new System.Drawing.Point(392, 37);
+            this.labelSN.Name = "labelSN";
+            this.labelSN.Size = new System.Drawing.Size(42, 16);
+            this.labelSN.TabIndex = 4;
+            this.labelSN.Text = "SN号";
             // 
             // labelSource
             // 
@@ -126,72 +164,34 @@
             this.comboBoxSource.TabIndex = 2;
             this.comboBoxSource.SelectedIndexChanged += new System.EventHandler(this.comboBoxSource_SelectedIndexChanged);
             // 
-            // labelSN
+            // labelStore
             // 
-            this.labelSN.AutoSize = true;
-            this.labelSN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSN.Location = new System.Drawing.Point(392, 37);
-            this.labelSN.Name = "labelSN";
-            this.labelSN.Size = new System.Drawing.Size(42, 16);
-            this.labelSN.TabIndex = 4;
-            this.labelSN.Text = "SN号";
+            this.labelStore.AutoSize = true;
+            this.labelStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStore.Location = new System.Drawing.Point(12, 37);
+            this.labelStore.Name = "labelStore";
+            this.labelStore.Size = new System.Drawing.Size(38, 16);
+            this.labelStore.TabIndex = 1;
+            this.labelStore.Text = "门店";
             // 
-            // textBoxSN
+            // comboBoxStore
             // 
-            this.textBoxSN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSN.Location = new System.Drawing.Point(440, 34);
-            this.textBoxSN.Name = "textBoxSN";
-            this.textBoxSN.Size = new System.Drawing.Size(200, 22);
-            this.textBoxSN.TabIndex = 5;
+            this.comboBoxStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxStore.FormattingEnabled = true;
+            this.comboBoxStore.Location = new System.Drawing.Point(56, 33);
+            this.comboBoxStore.Name = "comboBoxStore";
+            this.comboBoxStore.Size = new System.Drawing.Size(125, 24);
+            this.comboBoxStore.TabIndex = 0;
+            this.comboBoxStore.SelectedIndexChanged += new System.EventHandler(this.comboBoxStore_SelectedIndexChanged);
             // 
-            // buttonQuery
+            // dataGridViewList
             // 
-            this.buttonQuery.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
-            this.buttonQuery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonQuery.Location = new System.Drawing.Point(565, 5);
-            this.buttonQuery.Name = "buttonQuery";
-            this.buttonQuery.Size = new System.Drawing.Size(75, 25);
-            this.buttonQuery.TabIndex = 6;
-            this.buttonQuery.Text = "查询(&C)";
-            this.buttonQuery.UseVisualStyleBackColor = true;
-            this.buttonQuery.Click += new System.EventHandler(this.buttonQuery_Click);
-            // 
-            // labelStartTime
-            // 
-            this.labelStartTime.AutoSize = true;
-            this.labelStartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStartTime.Location = new System.Drawing.Point(12, 9);
-            this.labelStartTime.Name = "labelStartTime";
-            this.labelStartTime.Size = new System.Drawing.Size(38, 16);
-            this.labelStartTime.TabIndex = 7;
-            this.labelStartTime.Text = "起始";
-            // 
-            // dateTimePickerStart
-            // 
-            this.dateTimePickerStart.Location = new System.Drawing.Point(56, 7);
-            this.dateTimePickerStart.Name = "dateTimePickerStart";
-            this.dateTimePickerStart.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerStart.TabIndex = 8;
-            this.dateTimePickerStart.ValueChanged += new System.EventHandler(this.dateTimePickerStart_ValueChanged);
-            // 
-            // labelFinish
-            // 
-            this.labelFinish.AutoSize = true;
-            this.labelFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFinish.Location = new System.Drawing.Point(262, 9);
-            this.labelFinish.Name = "labelFinish";
-            this.labelFinish.Size = new System.Drawing.Size(23, 16);
-            this.labelFinish.TabIndex = 9;
-            this.labelFinish.Text = "至";
-            // 
-            // dateTimePickerFinish
-            // 
-            this.dateTimePickerFinish.Location = new System.Drawing.Point(291, 7);
-            this.dateTimePickerFinish.Name = "dateTimePickerFinish";
-            this.dateTimePickerFinish.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerFinish.TabIndex = 10;
-            this.dateTimePickerFinish.ValueChanged += new System.EventHandler(this.dateTimePickerFinish_ValueChanged);
+            this.dataGridViewList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewList.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewList.Name = "dataGridViewList";
+            this.dataGridViewList.Size = new System.Drawing.Size(749, 405);
+            this.dataGridViewList.TabIndex = 0;
             // 
             // DetailReportForm
             // 

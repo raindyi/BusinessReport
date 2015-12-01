@@ -46,6 +46,7 @@
     <Compile Include="Model\DataDicDetailModel.cs" />
     <Compile Include="Model\DetailReportQueryModel.cs" />
     <Compile Include="Model\HandlingResult.cs" />
+    <Compile Include="Model\ReportClearModel.cs" />
     <Compile Include="Model\SnModel.cs" />
     <Compile Include="Model\StoreModel.cs" />
     <Compile Include="Model\UserInformationModel.cs" />

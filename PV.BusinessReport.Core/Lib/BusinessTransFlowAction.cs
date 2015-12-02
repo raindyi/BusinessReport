@@ -25,22 +25,29 @@ namespace PV.BusinessReport.Core.Lib
             DateTime t = DateTime.Now;
             foreach (DataRow sdr in source.Rows)
             {
-                DataRow dr = dt.NewRow();
-                dr["ID"] = Guid.NewGuid();
-                dr["SN"] = sdr["机器SN号"];
-                dr["RunningNo"] = sdr["交易流水号"];
-                dr["ExcTime"] = sdr["交易时间"];
-                dr["ExcSource"] =Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(sdr["交易来源"].ToString()));
-                dr["NetPay"] = sdr["实付金额"];
-                dr["Payable"] = sdr["应付金额"];
-                dr["Handling"] = sdr["手续费"];
-                dr["Statue"] = sdr["状态"];
-                dr["BankRunningNo"] = sdr["银行流水单"];
-                dr["BID"] = id;
-                dr["Creator"] = UserInformationContext.LoginName;
-                dr["CreatorID"] = UserInformationContext.ID;
-                dr["CreatedTime"] = t;
-                dt.Rows.Add(dr);
+                try
+                {
+                    DataRow dr = dt.NewRow();
+                    dr["ID"] = Guid.NewGuid();
+                    dr["SN"] = sdr["机器SN号"];
+                    dr["RunningNo"] = sdr["交易流水号"];
+                    dr["ExcTime"] = sdr["交易时间"];
+                    dr["ExcSource"] = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(sdr["交易来源"].ToString()));
+                    dr["NetPay"] = sdr["实付金额"];
+                    dr["Payable"] = sdr["应付金额"];
+                    dr["Handling"] = sdr["手续费"];
+                    dr["Statue"] = sdr["状态"];
+                    dr["BankRunningNo"] = sdr["银行流水单"];
+                    dr["BID"] = id;
+                    dr["Creator"] = UserInformationContext.LoginName;
+                    dr["CreatorID"] = UserInformationContext.ID;
+                    dr["CreatedTime"] = t;
+                    dt.Rows.Add(dr);
+                }
+                catch (Exception ex)
+                {
+                    continue;
+                }
             }
             String sql = "SELECT * FROM BUSINESS_TRANSFLOWCP WHERE 1=2";
            

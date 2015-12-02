@@ -56,7 +56,16 @@ namespace PV.BusinessReport.UI.Config
                     DialogModel = false,
                     OperateFormFullName = "PV.BusinessReport.UI.Forms.DetailReportForm"
                 }
-            },{
+            },
+            {
+                "TRANSFORREPORTDATA",
+                new MenuConfigModel()
+                {
+                    DialogModel = true,
+                    OperateFormFullName = "PV.BusinessReport.UI.Forms.TransforReportDataForm"
+                }
+            },
+            {
                 "SUMMARYREPORT",
                 new MenuConfigModel()
                 {
@@ -64,7 +73,6 @@ namespace PV.BusinessReport.UI.Config
                     OperateFormFullName = "PV.BusinessReport.UI.Forms.SummaryReportForm"
                 }
             }
-
         };
     }
 }

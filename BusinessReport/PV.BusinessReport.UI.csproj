@@ -161,6 +161,9 @@
     <EmbeddedResource Include="Forms\StoreListForm.resx">
       <DependentUpon>StoreListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SummaryReportForm.resx">
+      <DependentUpon>SummaryReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\TransFlowImportForm.resx">
       <DependentUpon>TransFlowImportForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +200,7 @@
     <Content Include="Data\BusinessReport.pdb" />
     <Content Include="Data\Database.sql" />
     <Content Include="Res\1Main.ico" />
+    <Content Include="Res\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PV.BusinessReport.Common\PV.BusinessReport.Common.csproj">

@@ -95,6 +95,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "TransFlowImportForm";
             this.Text = "商户交易流水信息导入";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransFlowImportForm_FormClosing);
             this.Load += new System.EventHandler(this.TransFlowImportForm_Load);
             this.ResumeLayout(false);
 

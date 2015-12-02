@@ -49,6 +49,7 @@
     <Compile Include="Model\ReportClearModel.cs" />
     <Compile Include="Model\SnModel.cs" />
     <Compile Include="Model\StoreModel.cs" />
+    <Compile Include="Model\SummaryReportQueryModel.cs" />
     <Compile Include="Model\UserInformationModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\UserQueryModel.cs" />

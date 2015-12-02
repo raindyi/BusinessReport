@@ -49,6 +49,7 @@
     <Compile Include="Lib\SchemaAction.cs" />
     <Compile Include="Lib\SNAction.cs" />
     <Compile Include="Lib\StoreAction.cs" />
+    <Compile Include="Lib\SumaryReportAction.cs" />
     <Compile Include="Lib\UserAction.cs" />
     <Compile Include="Lib\ValidationAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

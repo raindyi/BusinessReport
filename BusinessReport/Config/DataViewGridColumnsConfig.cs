@@ -203,7 +203,7 @@ namespace PV.BusinessReport.UI.Config
             {
                 "DCODE", new GridColumnModel()
                 {
-                    Name = "SCODE",
+                    Name = "DCODE",
                     HeadName = "主项",
                     Width = 200
                 }
@@ -263,6 +263,157 @@ namespace PV.BusinessReport.UI.Config
                     Name = "CODE",
                     HeadName = "SN编号",
                     Width = 120
+                }
+            }
+        };
+
+        public static readonly Dictionary<String, GridColumnModel> SNDetailReportSettings = new Dictionary
+           <String, GridColumnModel>()
+        {
+            {
+                "SN", new GridColumnModel()
+                {
+                    Name = "SN",
+                    HeadName = "机器SN号",
+                    Width = 120
+                }
+            },
+            {
+                "EXCTIME", new GridColumnModel()
+                {
+                    Name = "EXCTIME",
+                    HeadName = "交易时间",
+                    Width = 120
+                }
+            },
+            {
+                "EXCSOURCE", new GridColumnModel()
+                {
+                    Name = "EXCSOURCE",
+                    HeadName = "交易来源",
+                    Width = 100
+
+                }
+            },
+            {
+                "NETPAY", new GridColumnModel()
+                {
+                    Name = "NETPAY",
+                    HeadName = "实付金额",
+                    Width = 125
+                }
+            },
+            {
+                "PAYABLE", new GridColumnModel()
+                {
+                    Name = "PAYABLE",
+                    HeadName = "应付金额",
+                    Width = 125
+                }
+            },
+            {
+                "HANDLING", new GridColumnModel()
+                {
+                    Name = "HANDLING",
+                    HeadName = "手续费",
+                    Width = 125
+                }
+            },
+            {
+                "STATUE", new GridColumnModel()
+                {
+                    Name = "STATUE",
+                    HeadName = "状态",
+                    Width = 125
+                }
+            },
+            {
+                "BANKRUNNINGNO", new GridColumnModel()
+                {
+                    Name = "BANKRUNNINGNO",
+                    HeadName = "银行流水单",
+                    Width = 200
+                }
+            }
+        };
+        public static readonly Dictionary<String, GridColumnModel> SNSummaryReport_SNSettings = new Dictionary
+          <String, GridColumnModel>()
+        {
+            {
+                "SN", new GridColumnModel()
+                {
+                    Name = "SN",
+                    HeadName = "机器SN号",
+                    Width = 120
+                }
+            },
+            {
+                "EXCSOURCE", new GridColumnModel()
+                {
+                    Name = "EXCSOURCE",
+                    HeadName = "交易来源",
+                    Width = 100
+
+                }
+            },
+            {
+                "NETPAY", new GridColumnModel()
+                {
+                    Name = "NETPAY",
+                    HeadName = "实付金额",
+                    Width = 125
+                }
+            },
+            {
+                "PAYABLE", new GridColumnModel()
+                {
+                    Name = "PAYABLE",
+                    HeadName = "应付金额",
+                    Width = 125
+                }
+            },
+            {
+                "HANDLING", new GridColumnModel()
+                {
+                    Name = "HANDLING",
+                    HeadName = "手续费",
+                    Width = 125
+                }
+            }
+        };
+        public static readonly Dictionary<String, GridColumnModel> SNSummaryReport_NOSNSettings = new Dictionary
+          <String, GridColumnModel>()
+        {
+            {
+                "EXCSOURCE", new GridColumnModel()
+                {
+                    Name = "EXCSOURCE",
+                    HeadName = "交易来源",
+                    Width = 100
+                }
+            },
+            {
+                "NETPAY", new GridColumnModel()
+                {
+                    Name = "NETPAY",
+                    HeadName = "实付金额",
+                    Width = 125
+                }
+            },
+            {
+                "PAYABLE", new GridColumnModel()
+                {
+                    Name = "PAYABLE",
+                    HeadName = "应付金额",
+                    Width = 125
+                }
+            },
+            {
+                "HANDLING", new GridColumnModel()
+                {
+                    Name = "HANDLING",
+                    HeadName = "手续费",
+                    Width = 125
                 }
             }
         };

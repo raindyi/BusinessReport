@@ -221,7 +221,7 @@
             this.Controls.Add(this.splitContainerMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StoreListForm";
-            this.Text = "StoreForm";
+            this.Text = "门店管理";
             this.Load += new System.EventHandler(this.StoreForm_Load);
             this.splitContainerMain.Panel1.ResumeLayout(false);
             this.splitContainerMain.Panel1.PerformLayout();

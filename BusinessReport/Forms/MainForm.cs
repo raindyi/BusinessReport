@@ -218,6 +218,11 @@ namespace PV.BusinessReport.UI.Forms
 
         private void tsMenuItemClear_Click(object sender, EventArgs e)
         {
+            AddForm("TRANSFORREPORTDATA");
+        }
+
+        private void tsMenuItemBTFSumReport_Click(object sender, EventArgs e)
+        {
             AddForm("SUMMARYREPORT");
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -247,5 +252,6 @@ namespace PV.BusinessReport.UI.Forms
             pwChange.ShowDialog(this);
         }
 
+       
     }
 }

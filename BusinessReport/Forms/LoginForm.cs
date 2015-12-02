@@ -63,5 +63,10 @@ namespace PV.BusinessReport.UI.Forms
         {
             Close();
         }
+
+        private void buttonLogin_Click_1(object sender, EventArgs e)
+        {
+            Login();
+        }
     }
 }

@@ -21,9 +21,12 @@ namespace PV.BusinessReport.UI.Forms
         private const String TIME_FORMATFINISH = "yyyy-MM-dd 23:59:59";
         private Dictionary<String, Int32> _defineTimeDic = new Dictionary<string, int>()
         {
+            { "昨天",1},
             { "今天",0},
             { "近一周",7},
+            { "近半月",15},
             { "近一月",30},
+            { "近一季度",90},
             { "近半年",180},
             { "近一年",365}
         };
@@ -51,6 +54,7 @@ namespace PV.BusinessReport.UI.Forms
             dateTimePickerStart.Value = DateTime.Now.AddDays(-1);
             dataGridViewList.AllowUserToAddRows = false;
             comboBoxTime.DropDownStyle=ComboBoxStyle.DropDown;
+            checkBoxReportType.Checked = true;
         }
 
         private void InitData()
@@ -62,6 +66,9 @@ namespace PV.BusinessReport.UI.Forms
         {
             radioButtonCustomer.CheckedChanged += RadioButtonCustomer_CheckedChanged;
             radioButtonDefine.CheckedChanged += RadioButtonDefine_CheckedChanged;
+            checkBoxReportType.CheckedChanged += CheckBoxReportType_CheckedChanged;
+            dateTimePickerStart.ValueChanged += dateTimePickerStart_ValueChanged;
+            dateTimePickerFinish.ValueChanged += dateTimePickerFinish_ValueChanged;
         }
 
         private void SetTimeCondition(Boolean condition)
@@ -105,11 +112,46 @@ namespace PV.BusinessReport.UI.Forms
         private void Query()
         {
             SumaryReportAction action=new SumaryReportAction();
-            
-            DataTable dt = action.Query(_queryModel);
 
-            Int32 rptype=checkBoxReportType.Checked?(String.IsNullOrEmpty(_queryModel.SN)?3:2):1;
-            SetListInvork(dt,rptype);
+            HandlingResult result = action.Query(_queryModel);
+            if (result.Result != null)
+            {
+                DataTable dt = (DataTable) result.Result;
+                Int32 rptype = checkBoxReportType.Checked ? (String.IsNullOrEmpty(_queryModel.SN) ? 3 : 2) : 1;
+                SetListInvork(dt, rptype);
+                SetSummaryInvok(dt, result.MsgNumber);
+            }
+        }
+
+        private void SetSummaryInvok(DataTable dt,Int32 count)
+        {
+            if (labelSummary.InvokeRequired)
+            {
+                labelSummary.Invoke((MethodInvoker) (() =>
+                {
+                    SetSummary(dt, count);
+                }));
+            }
+            else
+            {
+                SetSummary(dt,count);
+            }
+        }
+
+        private void SetSummary(DataTable dt, Int32 count)
+        {
+            StringBuilder msg=new StringBuilder();
+            msg.AppendFormat("总交易笔数: {0}     ", count);
+            if (dt != null)
+            {
+                var netpay = dt.AsEnumerable().Sum(x => x.Field<decimal>("NetPay"));
+                var payable = dt.AsEnumerable().Sum(x => x.Field<decimal>("Payable"));
+                var handling = dt.AsEnumerable().Sum(x => x.Field<decimal>("Handling"));
+                msg.AppendFormat("总实付金额: {0}     ", netpay);
+                msg.AppendFormat("总应付金额: {0}     ", payable);
+                msg.AppendFormat("总手续费: {0}", handling);
+            }
+            labelSummary.Text = msg.ToString();
         }
 
         private void SetListInvork(DataTable dt,Int32 listType)
@@ -186,6 +228,12 @@ namespace PV.BusinessReport.UI.Forms
         private void dateTimePickerFinish_ValueChanged(object sender, EventArgs e)
         {
             dateTimePickerStart.MaxDate = dateTimePickerStart.Value;
+        }
+        private void CheckBoxReportType_CheckedChanged(object sender, EventArgs e)
+        {
+            GetQueryCondition();
+            Thread t = new Thread(new ThreadStart(Query));
+            t.Start();
         }
     }
 }

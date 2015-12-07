@@ -15,8 +15,9 @@ namespace PV.BusinessReport.Core.Lib
         {
         }
 
-        public DataTable Query(SummaryReportQueryModel queryModel)
+        public HandlingResult Query(SummaryReportQueryModel queryModel)
         {
+            HandlingResult result=new HandlingResult();
             //SELECT SUM(NETPAY)AS NETPAY, SUM(PAYABLE) AS NETPAY, SUM(HANDLING) AS NETPAY, EXCSOURCE
             //FROM   BUSINESS_TRANSFLOW
             //WHERE  SN = '' AND EXCTIME BETWEEN '' AND ''
@@ -30,6 +31,18 @@ namespace PV.BusinessReport.Core.Lib
             //FROM   BUSINESS_TRANSFLOW
             //WHERE  EXCTIME BETWEEN '' AND ''
             //GROUP  BY SN, EXCSOURCE
+            StringBuilder cntsqlbuilder = new StringBuilder("SELECT COUNT(1) AS CNT FROM BUSINESS_TRANSFLOW WHERE 1=1");
+            if (queryModel.StartTime.HasValue && queryModel.FinishTime.HasValue)
+            {
+                cntsqlbuilder.AppendFormat(" AND EXCTIME BETWEEN '{0}' AND '{1}'",
+                        queryModel.StartTime.Value.ToString(TIME_FORMAT),
+                        queryModel.FinishTime.Value.ToString(TIME_FORMAT));
+            }
+            if (!String.IsNullOrEmpty(queryModel.SN))
+            {
+                cntsqlbuilder.AppendFormat(" AND SN='{0}'", queryModel.SN);
+            }
+
             StringBuilder sqlbulider=new StringBuilder();
             if (queryModel.ReportType == 1)
             {
@@ -78,12 +91,19 @@ namespace PV.BusinessReport.Core.Lib
                     sqlbulider.Append(" GROUP  BY EXCSOURCE");
                 }
             }
-            DataTable dt = null;
             using (DataBaseProcess process = new DataBaseProcess())
             {
-                dt = process.Query(sqlbulider.ToString());
+                DataTable dtcnt = process.Query(cntsqlbuilder.ToString());
+                if (dtcnt != null && dtcnt.Rows.Count > 0)
+                {
+                    Int32 i = 0;
+                    Int32.TryParse(dtcnt.Rows[0]["CNT"].ToString(), out i);
+                    result.MsgNumber = i;
+                }
+                DataTable dt = process.Query(sqlbulider.ToString());
+                result.Result = dt;
             }
-            return dt;
+            return result;
         }
     }
 }

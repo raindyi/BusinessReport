@@ -35,6 +35,7 @@
             this.tsMenuItemTransFlowImport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemBTFReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsMenuItemBTFSumReport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemSystem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +49,6 @@
             this.linkLabelUser = new System.Windows.Forms.LinkLabel();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.notifyIconMessage = new System.Windows.Forms.NotifyIcon(this.components);
-            this.tsMenuItemBTFSumReport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripOprMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -72,13 +72,13 @@
             this.tsMenuItemData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsMenuItemTransFlowImport});
             this.tsMenuItemData.Name = "tsMenuItemData";
-            this.tsMenuItemData.Size = new System.Drawing.Size(67, 20);
-            this.tsMenuItemData.Text = "数据业务";
+            this.tsMenuItemData.Size = new System.Drawing.Size(83, 20);
+            this.tsMenuItemData.Text = "数据业务(&D)";
             // 
             // tsMenuItemTransFlowImport
             // 
             this.tsMenuItemTransFlowImport.Name = "tsMenuItemTransFlowImport";
-            this.tsMenuItemTransFlowImport.Size = new System.Drawing.Size(146, 22);
+            this.tsMenuItemTransFlowImport.Size = new System.Drawing.Size(152, 22);
             this.tsMenuItemTransFlowImport.Text = "交易流水导入";
             this.tsMenuItemTransFlowImport.Click += new System.EventHandler(this.tsMenuItemTransFlowImport_Click);
             // 
@@ -90,25 +90,32 @@
             this.toolStripSeparator1,
             this.tsMenuItemClear});
             this.tsMenuItemReport.Name = "tsMenuItemReport";
-            this.tsMenuItemReport.Size = new System.Drawing.Size(67, 20);
-            this.tsMenuItemReport.Text = "报表业务";
+            this.tsMenuItemReport.Size = new System.Drawing.Size(82, 20);
+            this.tsMenuItemReport.Text = "报表业务(&R)";
             // 
             // tsMenuItemBTFReport
             // 
             this.tsMenuItemBTFReport.Name = "tsMenuItemBTFReport";
-            this.tsMenuItemBTFReport.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemBTFReport.Size = new System.Drawing.Size(146, 22);
             this.tsMenuItemBTFReport.Text = "交易流水查询";
             this.tsMenuItemBTFReport.Click += new System.EventHandler(this.tsMenuItemBTFReport_Click);
+            // 
+            // tsMenuItemBTFSumReport
+            // 
+            this.tsMenuItemBTFSumReport.Name = "tsMenuItemBTFSumReport";
+            this.tsMenuItemBTFSumReport.Size = new System.Drawing.Size(146, 22);
+            this.tsMenuItemBTFSumReport.Text = "交易分析报表";
+            this.tsMenuItemBTFSumReport.Click += new System.EventHandler(this.tsMenuItemBTFSumReport_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
             // 
             // tsMenuItemClear
             // 
             this.tsMenuItemClear.Name = "tsMenuItemClear";
-            this.tsMenuItemClear.Size = new System.Drawing.Size(152, 22);
+            this.tsMenuItemClear.Size = new System.Drawing.Size(146, 22);
             this.tsMenuItemClear.Text = "报表数据清理";
             this.tsMenuItemClear.Click += new System.EventHandler(this.tsMenuItemClear_Click);
             // 
@@ -121,8 +128,8 @@
             this.toolStripSeparator2,
             this.tsMenuItemAbout});
             this.tsMenuItemSystem.Name = "tsMenuItemSystem";
-            this.tsMenuItemSystem.Size = new System.Drawing.Size(43, 20);
-            this.tsMenuItemSystem.Text = "系统";
+            this.tsMenuItemSystem.Size = new System.Drawing.Size(82, 20);
+            this.tsMenuItemSystem.Text = "系统管理(&T)";
             // 
             // tsMenuItemUserManagement
             // 
@@ -217,13 +224,6 @@
             this.notifyIconMessage.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconMessage.Icon")));
             this.notifyIconMessage.Text = "交易流水数据管理系统";
             this.notifyIconMessage.Visible = true;
-            // 
-            // tsMenuItemBTFSumReport
-            // 
-            this.tsMenuItemBTFSumReport.Name = "tsMenuItemBTFSumReport";
-            this.tsMenuItemBTFSumReport.Size = new System.Drawing.Size(152, 22);
-            this.tsMenuItemBTFSumReport.Text = "交易分析报表";
-            this.tsMenuItemBTFSumReport.Click += new System.EventHandler(this.tsMenuItemBTFSumReport_Click);
             // 
             // MainForm
             // 

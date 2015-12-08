@@ -94,7 +94,7 @@ namespace PV.BusinessReport.UI.Forms
                 result = action.Add(model);
                 if (result.Successed)
                 {
-                    MessageHelper.ShowErrorNotify(this, result.Message);
+                    MessageHelper.ShowInformationNotify(this, result.Message);
                 }
                 else
                 {
@@ -156,17 +156,20 @@ namespace PV.BusinessReport.UI.Forms
 
         private void dataGridViewList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            try
+            if (e.Button.Equals(MouseButtons.Left))
             {
-                DataRowView drv = (DataRowView)dataGridViewList.CurrentRow.DataBoundItem;
-                DataRow dr = drv.Row;
-                SNForm snForm = new SNForm();
-                snForm.StoreId = Guid.Parse(dr["ID"].ToString());
-                snForm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                _log.Error("View Sn information error::", ex);
+                try
+                {
+                    DataRowView drv = (DataRowView)dataGridViewList.CurrentRow.DataBoundItem;
+                    DataRow dr = drv.Row;
+                    SNForm snForm = new SNForm();
+                    snForm.StoreId = Guid.Parse(dr["ID"].ToString());
+                    snForm.ShowDialog(this);
+                }
+                catch (Exception ex)
+                {
+                    _log.Error("View Sn information error::", ex);
+                }
             }
         }
 
@@ -174,7 +177,7 @@ namespace PV.BusinessReport.UI.Forms
         {
             try
             {
-                DataRowView drv = (DataRowView)dataGridViewList.CurrentRow.DataBoundItem;
+                DataRowView drv = (DataRowView) dataGridViewList.CurrentRow.DataBoundItem;
                 DataRow dr = drv.Row;
                 textBoxStoreName.Text = dr["Name"].ToString();
                 Guid.TryParse(dr["ID"].ToString(), out _selStoreId);
@@ -182,6 +185,36 @@ namespace PV.BusinessReport.UI.Forms
             catch (Exception ex)
             {
                 _log.Error("View Sn information error::", ex);
+            }
+        }
+
+        private void dataGridViewList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button.Equals(MouseButtons.Right))
+            {
+                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+                {
+                    try
+                    {
+                        DataRowView drv = (DataRowView) dataGridViewList.Rows[e.RowIndex].DataBoundItem;
+                        DataRow dr = drv.Row;
+                        StoreModifyForm form = new StoreModifyForm();
+                        StoreModel model = new StoreModel();
+                        model.Id = Guid.Parse(dr["ID"].ToString());
+                        model.Name = dr["Name"].ToString();
+                        model.Phone = dr["Phone"].ToString();
+                        form.Store = model;
+                        DialogResult result = form.ShowDialog(this);
+                        if (result == DialogResult.Yes)
+                        {
+                            LodaData();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _log.Error("View Sn information error::", ex);
+                    }
+                }
             }
         }
     }

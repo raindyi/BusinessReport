@@ -18,7 +18,7 @@ namespace PV.BusinessReport.Core.Lib
 
         public DataTable Query()
         {
-            String sql = "SELECT ID, NAME FROM BPSYS_STORE";
+            String sql = "SELECT ID, NAME,PHONE FROM BPSYS_STORE";
             DataTable dt=new DataTable();
             using (DataBaseProcess process=new DataBaseProcess())
             {
@@ -40,6 +40,19 @@ namespace PV.BusinessReport.Core.Lib
             }
             result.Successed = result.MsgNumber > 0;
             result.Message = result.Successed ? "新增成功" : "新增失败";
+            return result;
+        }
+
+        public HandlingResult Update(StoreModel model)
+        {
+            HandlingResult result = new HandlingResult();
+            String sql = String.Format("UPDATE BPSYS_STORE SET NAME='{0}', PHONE='{1}' WHERE ID='{2}'",model.Name,model.Phone,model.Id);
+            using (DataBaseProcess process = new DataBaseProcess())
+            {
+                result.MsgNumber = process.Exec(sql);
+            }
+            result.Successed = result.MsgNumber > 0;
+            result.Message = result.Successed ? "更新成功" : "更新失败";
             return result;
         }
     }

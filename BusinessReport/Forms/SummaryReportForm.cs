@@ -60,6 +60,30 @@ namespace PV.BusinessReport.UI.Forms
         private void InitData()
         {
             comboBoxTime.Items.AddRange(_defineTimeDic.Keys.ToArray<Object>());
+            DataDicAction action=new DataDicAction();
+            DataTable dt= action.GetList("交易来源");
+            if (dt != null)
+            {
+                DataRow dr = dt.NewRow();
+                dr["ID"] = Guid.Empty;
+                dr["CODE"] = "--";
+                dt.Rows.InsertAt(dr,0);
+                comboBoxSource.ValueMember = "ID";
+                comboBoxSource.DisplayMember = "CODE";
+                comboBoxSource.DataSource = dt;
+            }
+            StoreAction storeAction=new StoreAction();
+            DataTable store = storeAction.Query();
+            if (store != null)
+            {
+                DataRow dr = store.NewRow();
+                dr["ID"] = Guid.Empty;
+                dr["Name"] = "--";
+                store.Rows.InsertAt(dr, 0);
+                comboBoxStore.ValueMember = "ID";
+                comboBoxStore.DisplayMember = "NAME";
+                comboBoxStore.DataSource = store;
+            }
         }
         
         private void InitControlAfterData()
@@ -112,7 +136,6 @@ namespace PV.BusinessReport.UI.Forms
         private void Query()
         {
             SumaryReportAction action=new SumaryReportAction();
-
             HandlingResult result = action.Query(_queryModel);
             if (result.Result != null)
             {
@@ -194,7 +217,17 @@ namespace PV.BusinessReport.UI.Forms
         private void GetQueryCondition()
         {
             _queryModel = new SummaryReportQueryModel();
+            if (comboBoxStore.SelectedIndex > 0)
+            {
+                _queryModel.StoreId = Guid.Parse(comboBoxStore.SelectedValue.ToString());
+            }
+            else
+            {
+                _queryModel.StoreId = Guid.Empty;
+            }
+            _queryModel.Source = comboBoxSource.Text.Replace("-","").Trim();
             _queryModel.SN = textBoxSN.Text.Trim();
+            _queryModel.SNName = textBoxSNName.Text.Trim();
             _queryModel.ReportType = checkBoxReportType.Checked ? 2 : 1;
             if (radioButtonCustomer.Checked)
             {

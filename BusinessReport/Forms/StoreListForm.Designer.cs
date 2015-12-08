@@ -210,6 +210,7 @@
             this.dataGridViewList.Name = "dataGridViewList";
             this.dataGridViewList.Size = new System.Drawing.Size(744, 361);
             this.dataGridViewList.TabIndex = 0;
+            this.dataGridViewList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewList_CellMouseClick);
             this.dataGridViewList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewList_MouseClick);
             this.dataGridViewList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewList_MouseDoubleClick);
             // 

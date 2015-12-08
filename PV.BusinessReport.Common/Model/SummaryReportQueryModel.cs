@@ -8,11 +8,14 @@ namespace PV.BusinessReport.Common.Model
     public class SummaryReportQueryModel
     {
         public String SN { get; set; }
+        public String SNName { get; set; }
+        public String Source { get; set; }
         public DateTime? StartTime { get; set; }
         public DateTime? FinishTime { get; set; }
         /// <summary>
         /// 1 明细 2汇总
         /// </summary>
         public Int32 ReportType { get; set; }
+        public Guid StoreId { get; set; }
     }
 }

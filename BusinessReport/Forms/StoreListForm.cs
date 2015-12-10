@@ -55,7 +55,8 @@ namespace PV.BusinessReport.UI.Forms
                 result = _action.Add(model);
                 if (result.Successed)
                 {
-                    MessageHelper.ShowErrorNotify(this, result.Message);
+                    MessageHelper.ShowInformationNotify(this, result.Message);
+                    LodaData();
                 }
                 else
                 {
@@ -64,7 +65,7 @@ namespace PV.BusinessReport.UI.Forms
             }
             else
             {
-                MessageHelper.ShowErrorNotify(this,result.Message);
+                MessageHelper.ShowWarningNotify(this,result.Message);
             }
         }
 

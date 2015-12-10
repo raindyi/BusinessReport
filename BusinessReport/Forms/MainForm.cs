@@ -242,6 +242,7 @@ namespace PV.BusinessReport.UI.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            _log.Info(String.Format("用户{0}于{1}登录系统",UserInformationContext.LoginName,UserInformationContext.LoginTime.ToString("yyyy-MM-dd HH:mm:ss")));
             Init();
         }
 

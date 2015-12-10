@@ -17,7 +17,7 @@ namespace PV.BusinessReport.Core.Lib
 
         public DataTable QueryByStore(Guid storeId)
         {
-            String sql =String.Format("SELECT CODE,NAME FROM BPSYS_STORESN WHERE STOREID='{0}'",storeId);
+            String sql =String.Format("SELECT ID,CODE,NAME FROM BPSYS_STORESN WHERE STOREID='{0}'",storeId);
             DataTable dt = null;
             using (DataBaseProcess process=new DataBaseProcess())
             {
@@ -62,7 +62,7 @@ namespace PV.BusinessReport.Core.Lib
              HandlingResult result = new HandlingResult();
              String sql = String.Format("UPDATE BPSYS_STORESN SET NAME='{0}',CODE='{1}' WHERE ID='{2}'", model.Name,
                  model.Code, model.Id);
-             String querysql = String.Format("SELECT ID AS CNT FROM BPSYS_STORESN WHERE CODE='{0}'", model.Code);
+             String querysql = String.Format("SELECT ID FROM BPSYS_STORESN WHERE CODE='{0}'", model.Code);
 
              using (DataBaseProcess process = new DataBaseProcess())
              {

@@ -50,9 +50,13 @@ namespace PV.BusinessReport.Core.Lib
             {
                 if (!String.IsNullOrEmpty(queryModel.SNName))
                 {
-                    cntsqlbuilder.AppendFormat(" AND N.CODE='{0}' ",
+                    cntsqlbuilder.AppendFormat(" AND N.NAME='{0}' ",
                         queryModel.SNName);
                 }
+            }
+            if (queryModel.StoreId != null && queryModel.StoreId != Guid.Empty)
+            {
+                cntsqlbuilder.AppendFormat(" AND S.ID='{0}' ", queryModel.StoreId);
             }
             if (!String.IsNullOrEmpty(queryModel.Source))
             {
@@ -75,7 +79,7 @@ namespace PV.BusinessReport.Core.Lib
                 {
                     if (!String.IsNullOrEmpty(queryModel.SNName))
                     {
-                        cntsqlbuilder.AppendFormat(" AND N.CODE='{0}' ", queryModel.SNName);
+                        sqlbulider.AppendFormat(" AND N.NAME='{0}' ", queryModel.SNName);
                     }
                 }
                 if (queryModel.StartTime.HasValue && queryModel.FinishTime.HasValue)
@@ -84,9 +88,13 @@ namespace PV.BusinessReport.Core.Lib
                         queryModel.StartTime.Value.ToString(TIME_FORMAT),
                         queryModel.FinishTime.Value.ToString(TIME_FORMAT));
                 }
+                if (queryModel.StoreId != null && queryModel.StoreId != Guid.Empty)
+                {
+                    sqlbulider.AppendFormat(" AND S.ID='{0}' ", queryModel.StoreId);
+                }
                 if (!String.IsNullOrEmpty(queryModel.Source))
                 {
-                    cntsqlbuilder.AppendFormat("  AND EXCSOURCE='{0}'", queryModel.Source);
+                    sqlbulider.AppendFormat("  AND EXCSOURCE='{0}'", queryModel.Source);
                 }
 
             }
@@ -108,7 +116,11 @@ namespace PV.BusinessReport.Core.Lib
                     }
                     if (!String.IsNullOrEmpty(queryModel.SNName))
                     {
-                        sqlbulider.AppendFormat(" AND N.CODE='{0}' ", queryModel.SNName);
+                        sqlbulider.AppendFormat(" AND N.NAME='{0}' ", queryModel.SNName);
+                    }
+                    if (queryModel.StoreId != null && queryModel.StoreId != Guid.Empty)
+                    {
+                        sqlbulider.AppendFormat(" AND S.ID='{0}' ", queryModel.StoreId);
                     }
                     if (!String.IsNullOrEmpty(queryModel.Source))
                     {
@@ -130,6 +142,10 @@ namespace PV.BusinessReport.Core.Lib
                             queryModel.FinishTime.Value.ToString(TIME_FORMAT));
                     }
                     sqlbulider.AppendFormat(" AND T.SN='{0}'", queryModel.SN);
+                    if (queryModel.StoreId != null && queryModel.StoreId != Guid.Empty)
+                    {
+                        sqlbulider.AppendFormat(" AND S.ID='{0}' ", queryModel.StoreId);
+                    }
                     if (!String.IsNullOrEmpty(queryModel.Source))
                     {
                         sqlbulider.AppendFormat("  AND T.EXCSOURCE='{0}'", queryModel.Source);

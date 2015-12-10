@@ -95,6 +95,7 @@ namespace PV.BusinessReport.UI.Forms
                 if (result.Successed)
                 {
                     MessageHelper.ShowInformationNotify(this,result.Message);
+                    LoadData();
                 }
                 else
                 {

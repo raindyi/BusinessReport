@@ -9,6 +9,7 @@ using System.Data.OleDb;
 using System.IO;
 using System.Linq;
 using System.Text;
+using log4net;
 
 namespace PV.BusinessReport.Common.Helper
 {
@@ -17,6 +18,7 @@ namespace PV.BusinessReport.Common.Helper
     /// </summary>
     public class ExcelHelper
     {
+        private ILog _log = LogManager.GetLogger(typeof(ExcelHelper));
         private OleDbConnection conn;
         private string connString;
         private string fileName;
@@ -62,29 +64,37 @@ namespace PV.BusinessReport.Common.Helper
         {
             if (System.IO.File.Exists(path))
             {
-                SetFileInfo(path);
-                OleDbDataAdapter myCommand = null;
-                DataSet ds = null;
-
-                using (conn = new OleDbConnection(connString))
+                try
                 {
-                    conn.Open();
+                    SetFileInfo(path);
+                    OleDbDataAdapter myCommand = null;
+                    DataSet ds = null;
 
-                    DataTable schemaTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    using (conn = new OleDbConnection(connString))
+                    {
+                        conn.Open();
 
-                    string tableName = fileType == FileType.csv ? fileName : schemaTable.Rows[0][2].ToString().Trim();
+                        DataTable schemaTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
 
-                    string strExcel = string.Empty;
+                        string tableName = fileType == FileType.csv
+                            ? fileName
+                            : schemaTable.Rows[0][2].ToString().Trim();
 
-                    strExcel = "Select   *   From   [" + tableName + "]";
-                    myCommand = new OleDbDataAdapter(strExcel, conn);
+                        string strExcel = string.Empty;
 
-                    ds = new DataSet();
+                        strExcel = "Select   *   From   [" + tableName + "]";
+                        myCommand = new OleDbDataAdapter(strExcel, conn);
 
-                    myCommand.Fill(ds, tableName);
+                        ds = new DataSet();
 
-                    readDataTable = ds.Tables[0];
+                        myCommand.Fill(ds, tableName);
 
+                        readDataTable = ds.Tables[0];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _log.Error("数据读取异常::",ex);
                 }
             }
             return readDataTable;
